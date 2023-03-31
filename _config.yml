@@ -1,0 +1,55 @@
+title: "Wie Sagt Man Auf Deutsch"
+email: info@wiesagtmanauf.de
+timezone: UTC
+baseurl: "/index"
+permalink: "/:title/"
+logo: 'assets/images/logo.png'
+favicon: 'assets/images/favicon.ico'
+author: Bot
+paginate: 30
+disqus: 'demowebsite'
+locale: en_us
+lang: en_us
+feed_items: 10
+feed_update_period: daily
+feed_update_frequency: 1
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+sass:
+  sass_dir: _sass
+  style: :compressed
+ganalytics: UA-113961478-1
+
+# Authors
+authors:
+  bot:
+    name: Bot
+    display_name: Bot
+    avatar: 'assets/images/sal.png'
+    email: info@wiesagtmanauf.de
+    twitter: https://twitter.com/wiesagtmanaufde
+    description: "CMS Bot"
+  ahmet:
+    name: ahmet
+    display_name: Ahmet Sina
+    avatar: 'assets/images/john.png'
+    email: asend.ustem@gmail.com
+    web: https://www.ahmetsina.com/
+    twitter: https://twitter.com/ustemahmed
+    description: "iOS Developer / Creator of the Wie Sagt Man Auf Deutsch "
+
+# Social
+social:
+  instagram: https://www.instagram.com/wiesagtmanaufde/
+  facebook: https://www.facebook.com/wiesagtmanaufde
+  twitter: https://twitter.com/wiesagtmanaufde
+
+# Plugins
+plugins: 
+- jekyll-paginate
+- jekyll-sitemap
+- jekyll-feed
+- jekyll-seo-tag
+- jekyll-archives
