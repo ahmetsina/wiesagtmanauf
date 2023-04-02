@@ -7,9 +7,11 @@ import datetime
 from PIL import Image, ImageDraw, ImageFont
 import random
 import yaml
+import sys
+ 
 
 ## Open AI 
-openai.api_key = "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"
+openai.api_key = sys.argv[1]
 
 # create a completion
 completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", 
