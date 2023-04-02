@@ -3,6 +3,8 @@
 source "https://rubygems.org"
 
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+gem "kramdown-parser-gfm"
+
 group :jekyll_plugins do
     gem 'jekyll-feed'
     gem 'jekyll-sitemap'
@@ -11,6 +13,7 @@ group :jekyll_plugins do
     gem 'jekyll-archives'
     gem 'tzinfo-data'
     gem 'tzinfo'
+    
 end
 
 gem "fastlane"
