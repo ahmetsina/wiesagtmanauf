@@ -4,7 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="icon" href="{{ site.baseurl }}/{{site.favicon}}">
-
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "cd5b8c6a-ff98-4b52-86c8-2236fd99a82c",
+    });
+  });
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7117260266546239" crossorigin="anonymous"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 <title>{{ page.title }} | {{site.title}}</title>
 
 {% seo %}
@@ -47,7 +59,7 @@ gtag('config', '{{site.ganalytics}}');
           </a> | 
           
 
-          <div class="d-flex align-items-center">
+          <!-- <div class="d-flex align-items-center">
             
             <span class="ml-3 text-muted small">Follow</span>
 
@@ -69,7 +81,7 @@ gtag('config', '{{site.ganalytics}}');
             </svg>
             </a>
 
-          </div>
+          </div> -->
     
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
@@ -106,7 +118,6 @@ gtag('config', '{{site.ganalytics}}');
   <!-- If you want to support my work, please donate to remove the credits. This helps me keep it up and running: https://www.wowthemes.net/donate/ -->
   <div class="credits mx-auto text-center mb-3">
     <a class="hover-opacity font-weight-bold" href="https://bootstrapstarter.com/template-affiliates-bootstrap-jekyll/">
-      <img src="{{site.baseurl}}/assets/images/credits.png" alt="powered by WowThemes">
     </a>
   </div>
   <!-- CREDITS END -->
