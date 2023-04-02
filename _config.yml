@@ -2,7 +2,7 @@ title: "Wie Sagt Man Auf Deutsch"
 email: info@wiesagtmanauf.de
 timezone: UTC
 url: "wiesagtmanauf.de"
-baseurl: "/"
+baseurl: ''
 permalink: "/:title/"
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/favicon.ico'
