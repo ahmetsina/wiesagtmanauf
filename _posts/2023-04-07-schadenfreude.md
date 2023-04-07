@@ -32,4 +32,36 @@ Synonyms for Schadenfreude include gloating, delight, and satisfaction. These wo
 
 Examples of Schadenfreude can be found in everyday life. For example, if someone you dislike gets in trouble or has a bad day, you may feel a sense of joy or satisfaction. Similarly, when a sports team you dislike loses a game, you may feel pleased or happy about their defeat.
 
-Overall, Schadenfreude is a complex emotion that is a part of the human experience. While it may seem negative or even cruel, it is important to recognize and understand this emotion in order to better understand ourselves and others.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+Overall, Schadenfreude is a complex emotion that is a part of the human experience. While it may seem negative or even cruel, it is important to recognize and understand this emotion in order to better understand ourselves and others.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>---
+
+layout: post
+image: assets/images/posts/Schadenfreude.png
+categories: [Vocabulary]
+tags: [German]
+title: Schadenfreude
+
+---
+
+Schadenfreude is a German word that is used in English too. It doesn't have an exact translation, but it means to take pleasure in someone else's misfortune. It is a compound word that is made up of 'schaden' meaning damage or harm and 'freude' meaning pleasure or joy. 
+
+### Oppositites of Schadenfreude
+
+The antonym of Schadenfreude is Mitleid, which means sympathy. It is the feeling of sadness or concern for someone's suffering or misfortune. 
+
+### Synonyms of Schadenfreude
+
+There are a few words that are similar in meaning to Schadenfreude:
+
+- Hohn: It is the feeling of mockery or ridicule towards someone who is facing an unpleasant situation.
+
+- Spott: It is the feeling of amusement or laughter directed at someone else's misfortune.
+
+### Examples of Schadenfreude
+
+- Feeling happy when your rival fails an exam after boasting about their preparation.
+
+- Laughing at someone who slips and falls on ice or banana peel.
+
+- Being amused when someone you dislike gets fired or demoted.
+
+Schadenfreude is a negative emotion and it is discouraged in many cultures. It is important to practice empathy and kindness towards others. Remember that what goes around, comes around!\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
