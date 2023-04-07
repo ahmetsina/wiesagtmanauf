@@ -35,4 +35,24 @@ _**Wunderbar**_ is a German word that is often used to describe something as won
 4. Ich habe einen wunderbaren Tag gehabt (I had a wonderful day)
 5. Das Gedicht war einfach nur wunderbar (The poem was simply wonderful)
 
-Overall, _**Wunderbar**_ is a very versatile word in the German language, used to describe anything that is thought to be amazing or excellent in quality. It is a word that one can use to express enthusiasm about almost anything.\ <a id="yg-widget-0" class="youglish-widget" data-query="Wunderbar" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Wunderbar%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+Overall, _**Wunderbar**_ is a very versatile word in the German language, used to describe anything that is thought to be amazing or excellent in quality. It is a word that one can use to express enthusiasm about almost anything.\ <a id="yg-widget-0" class="youglish-widget" data-query="Wunderbar" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Wunderbar%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>---
+layout: post
+image: assets/images/posts/Wunderbar.png
+title: Wunderbar
+categories: [vocabulary]
+tags: [german, words, adjectives]
+---
+
+**Wunderbar** is a common adjective in German that translates to "wonderful" in English. It is often used to express excitement, appreciation or admiration towards someone or something. 
+
+**Opposite:** There is no direct opposite of "wunderbar" in German, but some antonyms for "wonderful" could be "schlecht" (bad), "unangenehm" (unpleasant) or "grausam" (cruel). 
+
+**Synonyms:** Some synonyms for wunderbar include "herrlich" (glorious), "fantastisch" (fantastic), "ausgezeichnet" (excellent), "prächtig" (magnificent) or "grandios" (spectacular).
+
+**Examples:**
+
+- "Das Essen hier ist wunderbar!" (The food here is wonderful!)
+- "Ich habe gestern eine wunderbare Zeit mit meinen Freunden verbracht." (I spent a wonderful time with my friends yesterday.)
+- "Wunderbar, dass es geklappt hat." (Wonderful, that it worked out.)
+
+Overall, "wunderbar" is a versatile German word that can express positivity and delight towards various things in life.\ <a id="yg-widget-0" class="youglish-widget" data-query="Wunderbar" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Wunderbar%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
