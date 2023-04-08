@@ -78,4 +78,25 @@ Schadenfreude is the opposite of empathy or compassion. When someone feels empat
 
 - Enjoyment at someone's failure in a game or life situation is another example of Schadenfreude.
 
-In conclusion, Schadenfreude can provide some temporary pleasure, but it isn't a desirable trait in a person. We should strive to be compassionate and empathetic towards others instead of deriving pleasure from their misfortunes.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+In conclusion, Schadenfreude can provide some temporary pleasure, but it isn't a desirable trait in a person. We should strive to be compassionate and empathetic towards others instead of deriving pleasure from their misfortunes.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>---
+layout: post
+image: assets/images/posts/Schadenfreude.png
+title: Schadenfreude
+categories: [vocabulary]
+tags: [german, emotions]
+---
+
+## Definition 
+Schadenfreude is a German word that refers to the feeling of pleasure derived from others' misfortune. 
+
+## Opposite
+The opposite of Schadenfreude would be empathetic joy, which refers to the feeling of happiness that arises from others' success.
+
+## Synonyms
+The German language offers a wide range of words to describe emotions. Some other synonyms for Schadenfreude that come to mind are "Scherzhaftigkeit" and "Gelächter".
+
+## Examples
+Schadenfreude may arise from different scenarios, the most common being when someone falls or fails at something. For example, a common example of Schadenfreude is laughing when someone slips on a wet floor, or when someone is humiliated in front of others. 
+However, it's important to note that feeling Schadenfreude is not a healthy emotion, and that deriving pleasure from others' misfortunes can negatively affect our own well-being and relationships with others. 
+
+It's always better to practice empathy and compassion towards others, even when they're experiencing failure or setbacks in their lives.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
