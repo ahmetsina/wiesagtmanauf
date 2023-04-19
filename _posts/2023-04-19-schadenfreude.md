@@ -58,4 +58,33 @@ A close synonym of Schadenfreude is the German word "Scherz" which means a joke 
 ### Example
 An example of Schadenfreude could be when a colleague who you don't like gets reprimanded by the boss. Instead of feeling sympathetic, you feel a sense of satisfaction that they got in trouble. Another example could be a political leader that you don't support losing an election. Instead of being happy with your preferred candidate winning, you feel happiness because the other candidate lost.
 
-In conclusion, Schadenfreude is a complex human emotion that is often associated with negative feelings. Although it is not an admirable emotion, it is part of our psychological makeup.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+In conclusion, Schadenfreude is a complex human emotion that is often associated with negative feelings. Although it is not an admirable emotion, it is part of our psychological makeup.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>---
+layout: post
+image: assets/images/posts/Schadenfreude.png
+title: Schadenfreude
+categories: [vocabulary]
+tags: [german, emotions, psychology]
+---
+
+**Schadenfreude** is a German word that describes the feeling of pleasure derived from others' misfortune or suffering. It is a compound of two words 'Schaden,' meaning harm or damage, and 'Freude,' meaning joy or pleasure, which makes it a paradoxical emotion.
+
+**Synonyms:** 
+- Gloating
+- Epicaricacy
+- Malicious joy
+- Morose delectation
+
+**Opposites:**
+- Empathy
+- Compassion
+- Sympathy
+- Goodwill
+
+**Examples:**
+- Laughing at someone who falls down in public
+- Feeling good when someone who wronged you experience difficulties
+- Enjoying a movie villain’s defeat
+
+Schadenfreude is believed to be a universal human emotion. However, it is often frowned upon as it goes against the principles of kindness and compassion. In extreme cases, Schadenfreude can lead to bullying, hostility, and even violence.
+
+In conclusion, Schadenfreude is a complex emotional response that has both positive and negative effects on individuals and societies. It is essential to recognize and manage Schadenfreude to avoid causing harm to others and to ourselves.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
