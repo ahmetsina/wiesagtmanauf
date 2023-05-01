@@ -390,12 +390,12 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][2] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:CancelKeyDeletion][3] (key policy)
+    # **Required permissions**: [kms:CancelKeyDeletion][3] (key policy)
     #
-    # **Related operations**\: ScheduleKeyDeletion
+    # **Related operations**: ScheduleKeyDeletion
     #
     #
     #
@@ -527,10 +527,10 @@ module Aws::KMS
     # store, see [Troubleshooting an external key store][6] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a
+    # **Cross-account use**: No. You cannot perform this operation on a
     # custom key store in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:ConnectCustomKeyStore][7] (IAM policy)
+    # **Required permissions**: [kms:ConnectCustomKeyStore][7] (IAM policy)
     #
     # **Related operations**
     #
@@ -624,7 +624,7 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][4] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on an
+    # **Cross-account use**: No. You cannot perform this operation on an
     # alias in a different Amazon Web Services account.
     #
     # **Required permissions**
@@ -656,6 +656,10 @@ module Aws::KMS
     # @option params [required, String] :alias_name
     #   Specifies the alias name. This value must begin with `alias/` followed
     #   by a name, such as `alias/ExampleAlias`.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   The `AliasName` value must be string of 1-256 characters. It can
     #   contain only alphanumeric characters, forward slashes (/), underscores
@@ -788,10 +792,10 @@ module Aws::KMS
     # For help with failures, see [Troubleshooting a custom key store][7] in
     # the *Key Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a
+    # **Cross-account use**: No. You cannot perform this operation on a
     # custom key store in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:CreateCustomKeyStore][9] (IAM policy).
+    # **Required permissions**: [kms:CreateCustomKeyStore][9] (IAM policy).
     #
     # **Related operations:**
     #
@@ -821,6 +825,10 @@ module Aws::KMS
     #   Specifies a friendly name for the custom key store. The name must be
     #   unique in your Amazon Web Services account and Region. This parameter
     #   is required for all custom key stores.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     # @option params [String] :cloud_hsm_cluster_id
     #   Identifies the CloudHSM cluster for an CloudHSM key store. This
@@ -1018,7 +1026,7 @@ module Aws::KMS
     #   # This example creates a custom key store that is associated with an AWS CloudHSM cluster.
     #
     #   resp = client.create_custom_key_store({
-    #     cloud_hsm_cluster_id: "cluster-1a23b4cdefg", # The ID of the CloudHSM cluster.
+    #     cloud_hsm_cluster_id: "cluster-234abcdefABC", # The ID of the CloudHSM cluster.
     #     custom_key_store_name: "ExampleKeyStore", # A friendly name for the custom key store.
     #     key_store_password: "kmsPswd", # The password for the kmsuser CU account in the specified cluster.
     #     trust_anchor_certificate: "<certificate-goes-here>", # The content of the customerCA.crt file that you created when you initialized the cluster.
@@ -1140,11 +1148,11 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][4] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation on a KMS key in
+    # **Cross-account use**: Yes. To perform this operation on a KMS key in
     # a different Amazon Web Services account, specify the key ARN in the
     # value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:CreateGrant][5] (key policy)
+    # **Required permissions**: [kms:CreateGrant][5] (key policy)
     #
     # **Related operations:**
     #
@@ -1235,22 +1243,19 @@ module Aws::KMS
     # @option params [Types::GrantConstraints] :constraints
     #   Specifies a grant constraint.
     #
-    #   KMS supports the `EncryptionContextEquals` and
-    #   `EncryptionContextSubset` grant constraints. Each constraint value can
-    #   include up to 8 encryption context pairs. The encryption context value
-    #   in each constraint cannot exceed 384 characters. For information about
-    #   grant constraints, see [Using grant constraints][1] in the *Key
-    #   Management Service Developer Guide*. For more information about
-    #   encryption context, see [Encryption context][2] in the <i> <i>Key
-    #   Management Service Developer Guide</i> </i>.
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
-    #   The encryption context grant constraints allow the permissions in the
-    #   grant only when the encryption context in the request matches
-    #   (`EncryptionContextEquals`) or includes (`EncryptionContextSubset`)
-    #   the encryption context specified in this structure.
+    #   KMS supports the `EncryptionContextEquals` and
+    #   `EncryptionContextSubset` grant constraints, which allow the
+    #   permissions in the grant only when the encryption context in the
+    #   request matches (`EncryptionContextEquals`) or includes
+    #   (`EncryptionContextSubset`) the encryption context specified in the
+    #   constraint.
     #
     #   The encryption context grant constraints are supported only on [grant
-    #   operations][3] that include an `EncryptionContext` parameter, such as
+    #   operations][1] that include an `EncryptionContext` parameter, such as
     #   cryptographic operations on symmetric encryption KMS keys. Grants with
     #   grant constraints can include the DescribeKey and RetireGrant
     #   operations, but the constraint doesn't apply to these operations. If
@@ -1261,15 +1266,20 @@ module Aws::KMS
     #
     #   You cannot use an encryption context grant constraint for
     #   cryptographic operations with asymmetric KMS keys or HMAC KMS keys.
-    #   These keys don't support an encryption context.
+    #   Operations with these keys don't support an encryption context.
+    #
+    #   Each constraint value can include up to 8 encryption context pairs.
+    #   The encryption context value in each constraint cannot exceed 384
+    #   characters. For information about grant constraints, see [Using grant
+    #   constraints][2] in the *Key Management Service Developer Guide*. For
+    #   more information about encryption context, see [Encryption context][3]
+    #   in the <i> <i>Key Management Service Developer Guide</i> </i>.
     #
     #
     #
-    #
-    #
-    #   [1]: https://docs.aws.amazon.com/kms/latest/developerguide/create-grant-overview.html#grant-constraints
-    #   [2]: https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context
-    #   [3]: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations
+    #   [1]: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations
+    #   [2]: https://docs.aws.amazon.com/kms/latest/developerguide/create-grant-overview.html#grant-constraints
+    #   [3]: https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context
     #
     # @option params [Array<String>] :grant_tokens
     #   A list of grant tokens.
@@ -1287,6 +1297,10 @@ module Aws::KMS
     # @option params [String] :name
     #   A friendly name for the grant. Use this value to prevent the
     #   unintended creation of duplicate grants when retrying this request.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   When this value is absent, all `CreateGrant` requests result in a new
     #   grant with a unique `GrantId` even if all the supplied parameters are
@@ -1552,13 +1566,13 @@ module Aws::KMS
     #
     #    </note>
     #
-    # **Cross-account use**\: No. You cannot use this operation to create a
+    # **Cross-account use**: No. You cannot use this operation to create a
     # KMS key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:CreateKey][11] (IAM policy). To use
-    # the `Tags` parameter, [kms:TagResource][11] (IAM policy). For examples
-    # and information about related permissions, see [Allow a user to create
-    # KMS keys][12] in the *Key Management Service Developer Guide*.
+    # **Required permissions**: [kms:CreateKey][11] (IAM policy). To use the
+    # `Tags` parameter, [kms:TagResource][11] (IAM policy). For examples and
+    # information about related permissions, see [Allow a user to create KMS
+    # keys][12] in the *Key Management Service Developer Guide*.
     #
     # **Related operations:**
     #
@@ -1621,11 +1635,13 @@ module Aws::KMS
     #   [4]: https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html
     #
     # @option params [String] :description
-    #   A description of the KMS key.
+    #   A description of the KMS key. Use a description that helps you decide
+    #   whether the KMS key is appropriate for a task. The default value is an
+    #   empty string (no description).
     #
-    #   Use a description that helps you decide whether the KMS key is
-    #   appropriate for a task. The default value is an empty string (no
-    #   description).
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   To set or change the description after the key is created, use
     #   UpdateKeyDescription.
@@ -1812,6 +1828,10 @@ module Aws::KMS
     #   Assigns one or more tags to the KMS key. Use this parameter to tag the
     #   KMS key when it is created. To tag an existing KMS key, use the
     #   TagResource operation.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   <note markdown="1"> Tagging or untagging a KMS key can allow or deny permission to the KMS
     #   key. For details, see [ABAC for KMS][1] in the *Key Management Service
@@ -2125,7 +2145,7 @@ module Aws::KMS
     #     key_metadata: {
     #       aws_account_id: "111122223333", 
     #       arn: "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab", 
-    #       cloud_hsm_cluster_id: "cluster-1a23b4cdefg", 
+    #       cloud_hsm_cluster_id: "cluster-234abcdefABC", 
     #       creation_date: Time.parse("2019-12-02T07:48:55-07:00"), 
     #       custom_key_store_id: "cks-1234567890abcdef0", 
     #       customer_master_key_spec: "SYMMETRIC_DEFAULT", 
@@ -2297,21 +2317,27 @@ module Aws::KMS
     # details, see [Best practices for IAM policies][4] in the *Key
     # Management Service Developer Guide*.
     #
-    # Applications in Amazon Web Services Nitro Enclaves can call this
-    # operation by using the [Amazon Web Services Nitro Enclaves Development
-    # Kit][5]. For information about the supporting parameters, see [How
-    # Amazon Web Services Nitro Enclaves use KMS][6] in the *Key Management
-    # Service Developer Guide*.
+    # `Decrypt` also supports [Amazon Web Services Nitro Enclaves][5], which
+    # provide an isolated compute environment in Amazon EC2. To call
+    # `Decrypt` for a Nitro enclave, use the [Amazon Web Services Nitro
+    # Enclaves SDK][6] or any Amazon Web Services SDK. Use the `Recipient`
+    # parameter to provide the attestation document for the enclave. Instead
+    # of the plaintext data, the response includes the plaintext data
+    # encrypted with the public key from the attestation document
+    # (`CiphertextForRecipient`).For information about the interaction
+    # between KMS and Amazon Web Services Nitro Enclaves, see [How Amazon
+    # Web Services Nitro Enclaves uses KMS][7] in the *Key Management
+    # Service Developer Guide*..
     #
     # The KMS key that you use for this operation must be in a compatible
-    # key state. For details, see [Key states of KMS keys][7] in the *Key
+    # key state. For details, see [Key states of KMS keys][8] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. If you use the `KeyId` parameter to
+    # **Cross-account use**: Yes. If you use the `KeyId` parameter to
     # identify a KMS key in a different Amazon Web Services account, specify
     # the key ARN or the alias ARN of the KMS key.
     #
-    # **Required permissions**\: [kms:Decrypt][8] (key policy)
+    # **Required permissions**: [kms:Decrypt][9] (key policy)
     #
     # **Related operations:**
     #
@@ -2329,10 +2355,11 @@ module Aws::KMS
     # [2]: https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/
     # [3]: https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html
     # [4]: https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html#iam-policies-best-practices
-    # [5]: https://github.com/aws/aws-nitro-enclaves-sdk-c
-    # [6]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
-    # [7]: https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html
-    # [8]: https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html
+    # [5]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html
+    # [6]: https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk
+    # [7]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
+    # [8]: https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html
+    # [9]: https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html
     #
     # @option params [required, String, StringIO, File] :ciphertext_blob
     #   Ciphertext to be decrypted. The blob includes metadata.
@@ -2417,16 +2444,44 @@ module Aws::KMS
     #   represents the only supported algorithm that is valid for symmetric
     #   encryption KMS keys.
     #
+    # @option params [Types::RecipientInfo] :recipient
+    #   A signed [attestation document][1] from an Amazon Web Services Nitro
+    #   enclave and the encryption algorithm to use with the enclave's public
+    #   key. The only valid encryption algorithm is `RSAES_OAEP_SHA_256`.
+    #
+    #   This parameter only supports attestation documents for Amazon Web
+    #   Services Nitro Enclaves. To include this parameter, use the [Amazon
+    #   Web Services Nitro Enclaves SDK][2] or any Amazon Web Services SDK.
+    #
+    #   When you use this parameter, instead of returning the plaintext data,
+    #   KMS encrypts the plaintext data with the public key in the attestation
+    #   document, and returns the resulting ciphertext in the
+    #   `CiphertextForRecipient` field in the response. This ciphertext can be
+    #   decrypted only with the private key in the enclave. The `Plaintext`
+    #   field in the response is null or empty.
+    #
+    #   For information about the interaction between KMS and Amazon Web
+    #   Services Nitro Enclaves, see [How Amazon Web Services Nitro Enclaves
+    #   uses KMS][3] in the *Key Management Service Developer Guide*.
+    #
+    #
+    #
+    #   [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc
+    #   [2]: https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk
+    #   [3]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
+    #
     # @return [Types::DecryptResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
     #
     #   * {Types::DecryptResponse#key_id #key_id} => String
     #   * {Types::DecryptResponse#plaintext #plaintext} => String
     #   * {Types::DecryptResponse#encryption_algorithm #encryption_algorithm} => String
+    #   * {Types::DecryptResponse#ciphertext_for_recipient #ciphertext_for_recipient} => String
     #
     #
-    # @example Example: To decrypt data
+    # @example Example: To decrypt data with a symmetric encryption KMS key
     #
-    #   # The following example decrypts data that was encrypted with a KMS key.
+    #   # The following example decrypts data that was encrypted with a symmetric encryption KMS key. The KeyId is not required
+    #   # when decrypting with a symmetric encryption key, but it is a best practice.
     #
     #   resp = client.decrypt({
     #     ciphertext_blob: "<binary data>", # The encrypted data (ciphertext).
@@ -2435,8 +2490,49 @@ module Aws::KMS
     #
     #   resp.to_h outputs the following:
     #   {
+    #     encryption_algorithm: "SYMMETRIC_DEFAULT", # The encryption algorithm that was used to decrypt the ciphertext. SYMMETRIC_DEFAULT is the only valid value for symmetric encryption in AWS KMS.
     #     key_id: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab", # The Amazon Resource Name (ARN) of the KMS key that was used to decrypt the data.
     #     plaintext: "<binary data>", # The decrypted (plaintext) data.
+    #   }
+    #
+    # @example Example: To decrypt data with an asymmetric encryption KMS key
+    #
+    #   # The following example decrypts data that was encrypted with an asymmetric encryption KMS key. When the KMS encryption
+    #   # key is asymmetric, you must specify the KMS key ID and the encryption algorithm that was used to encrypt the data.
+    #
+    #   resp = client.decrypt({
+    #     ciphertext_blob: "<binary data>", # The encrypted data (ciphertext).
+    #     encryption_algorithm: "RSAES_OAEP_SHA_256", # The encryption algorithm that was used to encrypt the data. This parameter is required to decrypt with an asymmetric KMS key.
+    #     key_id: "0987dcba-09fe-87dc-65ba-ab0987654321", # A key identifier for the KMS key to use to decrypt the data. This parameter is required to decrypt with an asymmetric KMS key.
+    #   })
+    #
+    #   resp.to_h outputs the following:
+    #   {
+    #     encryption_algorithm: "RSAES_OAEP_SHA_256", # The encryption algorithm that was used to decrypt the ciphertext.
+    #     key_id: "arn:aws:kms:us-west-2:111122223333:key/0987dcba-09fe-87dc-65ba-ab0987654321", # The Amazon Resource Name (ARN) of the KMS key that was used to decrypt the data.
+    #     plaintext: "<binary data>", # The decrypted (plaintext) data.
+    #   }
+    #
+    # @example Example: To decrypt data for a Nitro enclave
+    #
+    #   # The following Decrypt example includes the Recipient parameter with a signed attestation document from an AWS Nitro
+    #   # enclave. Instead of returning the decrypted data in plaintext (Plaintext), the operation returns the decrypted data
+    #   # encrypted by the public key from the attestation document (CiphertextForRecipient).
+    #
+    #   resp = client.decrypt({
+    #     ciphertext_blob: "<binary data>", # The encrypted data. This ciphertext was encrypted with the KMS key
+    #     key_id: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab", # The KMS key to use to decrypt the ciphertext
+    #     recipient: {
+    #       attestation_document: "<attestation document>", 
+    #       key_encryption_algorithm: "RSAES_OAEP_SHA_256", 
+    #     }, # Specifies the attestation document from the Nitro enclave and the encryption algorithm to use with the public key from the attestation document
+    #   })
+    #
+    #   resp.to_h outputs the following:
+    #   {
+    #     ciphertext_for_recipient: "<binary data>", # The decrypted CiphertextBlob encrypted with the public key from the attestation document
+    #     key_id: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab", # The KMS key that was used to decrypt the encrypted data (CiphertextBlob)
+    #     plaintext: "", # This field is null or empty
     #   }
     #
     # @example Request syntax with placeholder values
@@ -2449,6 +2545,10 @@ module Aws::KMS
     #     grant_tokens: ["GrantTokenType"],
     #     key_id: "KeyIdType",
     #     encryption_algorithm: "SYMMETRIC_DEFAULT", # accepts SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1, RSAES_OAEP_SHA_256, SM2PKE
+    #     recipient: {
+    #       key_encryption_algorithm: "RSAES_OAEP_SHA_256", # accepts RSAES_OAEP_SHA_256
+    #       attestation_document: "data",
+    #     },
     #   })
     #
     # @example Response structure
@@ -2456,6 +2556,7 @@ module Aws::KMS
     #   resp.key_id #=> String
     #   resp.plaintext #=> String
     #   resp.encryption_algorithm #=> String, one of "SYMMETRIC_DEFAULT", "RSAES_OAEP_SHA_1", "RSAES_OAEP_SHA_256", "SM2PKE"
+    #   resp.ciphertext_for_recipient #=> String
     #
     # @see http://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/Decrypt AWS API Documentation
     #
@@ -2484,7 +2585,7 @@ module Aws::KMS
     # create a new alias. To associate an existing alias with a different
     # KMS key, call UpdateAlias.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on an
+    # **Cross-account use**: No. You cannot perform this operation on an
     # alias in a different Amazon Web Services account.
     #
     # **Required permissions**
@@ -2578,10 +2679,10 @@ module Aws::KMS
     # If the operation succeeds, it returns a JSON object with no
     # properties.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a
+    # **Cross-account use**: No. You cannot perform this operation on a
     # custom key store in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:DeleteCustomKeyStore][5] (IAM policy)
+    # **Required permissions**: [kms:DeleteCustomKeyStore][5] (IAM policy)
     #
     # **Related operations:**
     #
@@ -2655,10 +2756,10 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][2] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:DeleteImportedKeyMaterial][3] (key
+    # **Required permissions**: [kms:DeleteImportedKeyMaterial][3] (key
     # policy)
     #
     # **Related operations:**
@@ -2750,10 +2851,10 @@ module Aws::KMS
     # see the [Troubleshooting external key stores][3]. Both topics are in
     # the *Key Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a
+    # **Cross-account use**: No. You cannot perform this operation on a
     # custom key store in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:DescribeCustomKeyStores][4] (IAM
+    # **Required permissions**: [kms:DescribeCustomKeyStores][4] (IAM
     # policy)
     #
     # **Related operations:**
@@ -2839,7 +2940,7 @@ module Aws::KMS
     #   {
     #     custom_key_stores: [
     #       {
-    #         cloud_hsm_cluster_id: "cluster-1a23b4cdefg", 
+    #         cloud_hsm_cluster_id: "cluster-234abcdefABC", 
     #         connection_state: "CONNECTED", 
     #         creation_date: Time.parse("1.499288695918E9"), 
     #         custom_key_store_id: "cks-1234567890abcdef0", 
@@ -2988,11 +3089,11 @@ module Aws::KMS
     # services use `DescribeKey` to create [Amazon Web Services managed
     # keys][2] from a *predefined Amazon Web Services alias* with no key ID.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:DescribeKey][4] (key policy)
+    # **Required permissions**: [kms:DescribeKey][4] (key policy)
     #
     # **Related operations:**
     #
@@ -3224,7 +3325,7 @@ module Aws::KMS
     #     key_metadata: {
     #       aws_account_id: "123456789012", 
     #       arn: "arn:aws:kms:us-west-2:123456789012:key/1234abcd-12ab-34cd-56ef-1234567890ab", 
-    #       cloud_hsm_cluster_id: "cluster-1a23b4cdefg", 
+    #       cloud_hsm_cluster_id: "cluster-234abcdefABC", 
     #       creation_date: Time.parse(1646160362.664), 
     #       custom_key_store_id: "cks-1234567890abcdef0", 
     #       customer_master_key_spec: "SYMMETRIC_DEFAULT", 
@@ -3339,12 +3440,12 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][2] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:DisableKey][3] (key policy)
+    # **Required permissions**: [kms:DisableKey][3] (key policy)
     #
-    # **Related operations**\: EnableKey
+    # **Related operations**: EnableKey
     #
     #
     #
@@ -3419,10 +3520,10 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][10] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:DisableKeyRotation][11] (key policy)
+    # **Required permissions**: [kms:DisableKeyRotation][11] (key policy)
     #
     # **Related operations:**
     #
@@ -3524,10 +3625,10 @@ module Aws::KMS
     # If the operation succeeds, it returns a JSON object with no
     # properties.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a
+    # **Cross-account use**: No. You cannot perform this operation on a
     # custom key store in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:DisconnectCustomKeyStore][3] (IAM
+    # **Required permissions**: [kms:DisconnectCustomKeyStore][3] (IAM
     # policy)
     #
     # **Related operations:**
@@ -3593,12 +3694,12 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][2] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:EnableKey][3] (key policy)
+    # **Required permissions**: [kms:EnableKey][3] (key policy)
     #
-    # **Related operations**\: DisableKey
+    # **Related operations**: DisableKey
     #
     #
     #
@@ -3685,10 +3786,10 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][11] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:EnableKeyRotation][12] (key policy)
+    # **Required permissions**: [kms:EnableKeyRotation][12] (key policy)
     #
     # **Related operations:**
     #
@@ -3804,39 +3905,39 @@ module Aws::KMS
     #
     # * Symmetric encryption KMS keys
     #
-    #   * `SYMMETRIC_DEFAULT`\: 4096 bytes
+    #   * `SYMMETRIC_DEFAULT`: 4096 bytes
     #
     #   ^
     #
     # * `RSA_2048`
     #
-    #   * `RSAES_OAEP_SHA_1`\: 214 bytes
+    #   * `RSAES_OAEP_SHA_1`: 214 bytes
     #
-    #   * `RSAES_OAEP_SHA_256`\: 190 bytes
+    #   * `RSAES_OAEP_SHA_256`: 190 bytes
     #
     # * `RSA_3072`
     #
-    #   * `RSAES_OAEP_SHA_1`\: 342 bytes
+    #   * `RSAES_OAEP_SHA_1`: 342 bytes
     #
-    #   * `RSAES_OAEP_SHA_256`\: 318 bytes
+    #   * `RSAES_OAEP_SHA_256`: 318 bytes
     #
     # * `RSA_4096`
     #
-    #   * `RSAES_OAEP_SHA_1`\: 470 bytes
+    #   * `RSAES_OAEP_SHA_1`: 470 bytes
     #
-    #   * `RSAES_OAEP_SHA_256`\: 446 bytes
+    #   * `RSAES_OAEP_SHA_256`: 446 bytes
     #
-    # * `SM2PKE`\: 1024 bytes (China Regions only)
+    # * `SM2PKE`: 1024 bytes (China Regions only)
     #
     # The KMS key that you use for this operation must be in a compatible
     # key state. For details, see [Key states of KMS keys][2] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:Encrypt][3] (key policy)
+    # **Required permissions**: [kms:Encrypt][3] (key policy)
     #
     # **Related operations:**
     #
@@ -3886,6 +3987,10 @@ module Aws::KMS
     #   asymmetric encryption algorithms and HMAC algorithms that KMS uses do
     #   not support an encryption context.
     #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
+    #
     #   An *encryption context* is a collection of non-secret key-value pairs
     #   that represent additional authenticated data. When you use an
     #   encryption context to encrypt data, you must specify the same (an
@@ -3934,9 +4039,9 @@ module Aws::KMS
     #   * {Types::EncryptResponse#encryption_algorithm #encryption_algorithm} => String
     #
     #
-    # @example Example: To encrypt data
+    # @example Example: To encrypt data with a symmetric encryption KMS key
     #
-    #   # The following example encrypts data with the specified KMS key.
+    #   # The following example encrypts data with the specified symmetric encryption KMS key.
     #
     #   resp = client.encrypt({
     #     key_id: "1234abcd-12ab-34cd-56ef-1234567890ab", # The identifier of the KMS key to use for encryption. You can use the key ID or Amazon Resource Name (ARN) of the KMS key, or the name or ARN of an alias that refers to the KMS key.
@@ -3946,7 +4051,26 @@ module Aws::KMS
     #   resp.to_h outputs the following:
     #   {
     #     ciphertext_blob: "<binary data>", # The encrypted data (ciphertext).
+    #     encryption_algorithm: "SYMMETRIC_DEFAULT", # The encryption algorithm that was used in the operation. For symmetric encryption keys, the encryption algorithm is always SYMMETRIC_DEFAULT.
     #     key_id: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab", # The ARN of the KMS key that was used to encrypt the data.
+    #   }
+    #
+    # @example Example: To encrypt data with an asymmetric encryption KMS key
+    #
+    #   # The following example encrypts data with the specified RSA asymmetric KMS key. When you encrypt with an asymmetric key,
+    #   # you must specify the encryption algorithm.
+    #
+    #   resp = client.encrypt({
+    #     encryption_algorithm: "RSAES_OAEP_SHA_256", # The encryption algorithm to use in the operation.
+    #     key_id: "0987dcba-09fe-87dc-65ba-ab0987654321", # The identifier of the KMS key to use for encryption. You can use the key ID or Amazon Resource Name (ARN) of the KMS key, or the name or ARN of an alias that refers to the KMS key.
+    #     plaintext: "<binary data>", # The data to encrypt.
+    #   })
+    #
+    #   resp.to_h outputs the following:
+    #   {
+    #     ciphertext_blob: "<binary data>", # The encrypted data (ciphertext).
+    #     encryption_algorithm: "RSAES_OAEP_SHA_256", # The encryption algorithm that was used in the operation.
+    #     key_id: "arn:aws:kms:us-west-2:111122223333:key/0987dcba-09fe-87dc-65ba-ab0987654321", # The ARN of the KMS key that was used to encrypt the data.
     #   }
     #
     # @example Request syntax with placeholder values
@@ -4012,14 +4136,22 @@ module Aws::KMS
     # information, see [Encryption Context][1] in the *Key Management
     # Service Developer Guide*.
     #
-    # Applications in Amazon Web Services Nitro Enclaves can call this
-    # operation by using the [Amazon Web Services Nitro Enclaves Development
-    # Kit][2]. For information about the supporting parameters, see [How
-    # Amazon Web Services Nitro Enclaves use KMS][3] in the *Key Management
-    # Service Developer Guide*.
+    # `GenerateDataKey` also supports [Amazon Web Services Nitro
+    # Enclaves][2], which provide an isolated compute environment in Amazon
+    # EC2. To call `GenerateDataKey` for an Amazon Web Services Nitro
+    # enclave, use the [Amazon Web Services Nitro Enclaves SDK][3] or any
+    # Amazon Web Services SDK. Use the `Recipient` parameter to provide the
+    # attestation document for the enclave. `GenerateDataKey` returns a copy
+    # of the data key encrypted under the specified KMS key, as usual. But
+    # instead of a plaintext copy of the data key, the response includes a
+    # copy of the data key encrypted under the public key from the
+    # attestation document (`CiphertextForRecipient`). For information about
+    # the interaction between KMS and Amazon Web Services Nitro Enclaves,
+    # see [How Amazon Web Services Nitro Enclaves uses KMS][4] in the *Key
+    # Management Service Developer Guide*..
     #
     # The KMS key that you use for this operation must be in a compatible
-    # key state. For details, see [Key states of KMS keys][4] in the *Key
+    # key state. For details, see [Key states of KMS keys][5] in the *Key
     # Management Service Developer Guide*.
     #
     # **How to use your data key**
@@ -4027,8 +4159,8 @@ module Aws::KMS
     # We recommend that you use the following pattern to encrypt data
     # locally in your application. You can write your own code or use a
     # client-side encryption library, such as the [Amazon Web Services
-    # Encryption SDK][5], the [Amazon DynamoDB Encryption Client][6], or
-    # [Amazon S3 client-side encryption][7] to do these tasks for you.
+    # Encryption SDK][6], the [Amazon DynamoDB Encryption Client][7], or
+    # [Amazon S3 client-side encryption][8] to do these tasks for you.
     #
     # To encrypt data outside of KMS:
     #
@@ -4049,11 +4181,11 @@ module Aws::KMS
     # 2.  Use the plaintext data key to decrypt data outside of KMS, then
     #     erase the plaintext data key from memory.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:GenerateDataKey][8] (key policy)
+    # **Required permissions**: [kms:GenerateDataKey][9] (key policy)
     #
     # **Related operations:**
     #
@@ -4070,13 +4202,14 @@ module Aws::KMS
     #
     #
     # [1]: https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context
-    # [2]: https://github.com/aws/aws-nitro-enclaves-sdk-c
-    # [3]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
-    # [4]: https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html
-    # [5]: https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/
-    # [6]: https://docs.aws.amazon.com/dynamodb-encryption-client/latest/devguide/
-    # [7]: https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html
-    # [8]: https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html
+    # [2]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html
+    # [3]: https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk
+    # [4]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
+    # [5]: https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html
+    # [6]: https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/
+    # [7]: https://docs.aws.amazon.com/dynamodb-encryption-client/latest/devguide/
+    # [8]: https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html
+    # [9]: https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html
     #
     # @option params [required, String] :key_id
     #   Specifies the symmetric encryption KMS key that encrypts the data key.
@@ -4106,6 +4239,10 @@ module Aws::KMS
     # @option params [Hash<String,String>] :encryption_context
     #   Specifies the encryption context that will be used when encrypting the
     #   data key.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   An *encryption context* is a collection of non-secret key-value pairs
     #   that represent additional authenticated data. When you use an
@@ -4152,11 +4289,40 @@ module Aws::KMS
     #   [1]: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token
     #   [2]: https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token
     #
+    # @option params [Types::RecipientInfo] :recipient
+    #   A signed [attestation document][1] from an Amazon Web Services Nitro
+    #   enclave and the encryption algorithm to use with the enclave's public
+    #   key. The only valid encryption algorithm is `RSAES_OAEP_SHA_256`.
+    #
+    #   This parameter only supports attestation documents for Amazon Web
+    #   Services Nitro Enclaves. To include this parameter, use the [Amazon
+    #   Web Services Nitro Enclaves SDK][2] or any Amazon Web Services SDK.
+    #
+    #   When you use this parameter, instead of returning the plaintext data
+    #   key, KMS encrypts the plaintext data key under the public key in the
+    #   attestation document, and returns the resulting ciphertext in the
+    #   `CiphertextForRecipient` field in the response. This ciphertext can be
+    #   decrypted only with the private key in the enclave. The
+    #   `CiphertextBlob` field in the response contains a copy of the data key
+    #   encrypted under the KMS key specified by the `KeyId` parameter. The
+    #   `Plaintext` field in the response is null or empty.
+    #
+    #   For information about the interaction between KMS and Amazon Web
+    #   Services Nitro Enclaves, see [How Amazon Web Services Nitro Enclaves
+    #   uses KMS][3] in the *Key Management Service Developer Guide*.
+    #
+    #
+    #
+    #   [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc
+    #   [2]: https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk
+    #   [3]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
+    #
     # @return [Types::GenerateDataKeyResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
     #
     #   * {Types::GenerateDataKeyResponse#ciphertext_blob #ciphertext_blob} => String
     #   * {Types::GenerateDataKeyResponse#plaintext #plaintext} => String
     #   * {Types::GenerateDataKeyResponse#key_id #key_id} => String
+    #   * {Types::GenerateDataKeyResponse#ciphertext_for_recipient #ciphertext_for_recipient} => String
     #
     #
     # @example Example: To generate a data key
@@ -4176,6 +4342,31 @@ module Aws::KMS
     #     plaintext: "<binary data>", # The unencrypted (plaintext) data key.
     #   }
     #
+    # @example Example: To generate a data key pair for a Nitro enclave
+    #
+    #   # The following example includes the Recipient parameter with a signed attestation document from an AWS Nitro enclave.
+    #   # Instead of returning a copy of the data key encrypted by the KMS key and a plaintext copy of the data key,
+    #   # GenerateDataKey returns one copy of the data key encrypted by the KMS key (CiphertextBlob) and one copy of the data key
+    #   # encrypted by the public key from the attestation document (CiphertextForRecipient). The operation doesn't return a
+    #   # plaintext data key. 
+    #
+    #   resp = client.generate_data_key({
+    #     key_id: "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab", # Identifies the KMS key used to encrypt the encrypted data key (CiphertextBlob)
+    #     key_spec: "AES_256", # Specifies the type of data key to return
+    #     recipient: {
+    #       attestation_document: "<attestation document>", 
+    #       key_encryption_algorithm: "RSAES_OAEP_SHA_256", 
+    #     }, # Specifies the attestation document from the Nitro enclave and the encryption algorithm to use with the public key from the attestation document
+    #   })
+    #
+    #   resp.to_h outputs the following:
+    #   {
+    #     ciphertext_blob: "<binary data>", # The data key encrypted by the specified KMS key
+    #     ciphertext_for_recipient: "<binary data>", # The plaintext data key encrypted by the public key from the attestation document
+    #     key_id: "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab", # The KMS key used to encrypt the CiphertextBlob (encrypted data key)
+    #     plaintext: "", # This field is null or empty
+    #   }
+    #
     # @example Request syntax with placeholder values
     #
     #   resp = client.generate_data_key({
@@ -4186,6 +4377,10 @@ module Aws::KMS
     #     number_of_bytes: 1,
     #     key_spec: "AES_256", # accepts AES_256, AES_128
     #     grant_tokens: ["GrantTokenType"],
+    #     recipient: {
+    #       key_encryption_algorithm: "RSAES_OAEP_SHA_256", # accepts RSAES_OAEP_SHA_256
+    #       attestation_document: "data",
+    #     },
     #   })
     #
     # @example Response structure
@@ -4193,6 +4388,7 @@ module Aws::KMS
     #   resp.ciphertext_blob #=> String
     #   resp.plaintext #=> String
     #   resp.key_id #=> String
+    #   resp.ciphertext_for_recipient #=> String
     #
     # @see http://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GenerateDataKey AWS API Documentation
     #
@@ -4245,23 +4441,38 @@ module Aws::KMS
     # 5280][1]. The private key is a DER-encoded PKCS8 PrivateKeyInfo, as
     # specified in [RFC 5958][2].
     #
+    # `GenerateDataKeyPair` also supports [Amazon Web Services Nitro
+    # Enclaves][3], which provide an isolated compute environment in Amazon
+    # EC2. To call `GenerateDataKeyPair` for an Amazon Web Services Nitro
+    # enclave, use the [Amazon Web Services Nitro Enclaves SDK][4] or any
+    # Amazon Web Services SDK. Use the `Recipient` parameter to provide the
+    # attestation document for the enclave. `GenerateDataKeyPair` returns
+    # the public data key and a copy of the private data key encrypted under
+    # the specified KMS key, as usual. But instead of a plaintext copy of
+    # the private data key (`PrivateKeyPlaintext`), the response includes a
+    # copy of the private data key encrypted under the public key from the
+    # attestation document (`CiphertextForRecipient`). For information about
+    # the interaction between KMS and Amazon Web Services Nitro Enclaves,
+    # see [How Amazon Web Services Nitro Enclaves uses KMS][5] in the *Key
+    # Management Service Developer Guide*..
+    #
     # You can use an optional encryption context to add additional security
     # to the encryption operation. If you specify an `EncryptionContext`,
     # you must specify the same encryption context (a case-sensitive exact
     # match) when decrypting the encrypted data key. Otherwise, the request
     # to decrypt fails with an `InvalidCiphertextException`. For more
-    # information, see [Encryption Context][3] in the *Key Management
+    # information, see [Encryption Context][6] in the *Key Management
     # Service Developer Guide*.
     #
     # The KMS key that you use for this operation must be in a compatible
-    # key state. For details, see [Key states of KMS keys][4] in the *Key
+    # key state. For details, see [Key states of KMS keys][7] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:GenerateDataKeyPair][5] (key policy)
+    # **Required permissions**: [kms:GenerateDataKeyPair][8] (key policy)
     #
     # **Related operations:**
     #
@@ -4279,13 +4490,20 @@ module Aws::KMS
     #
     # [1]: https://tools.ietf.org/html/rfc5280
     # [2]: https://tools.ietf.org/html/rfc5958
-    # [3]: https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context
-    # [4]: https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html
-    # [5]: https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html
+    # [3]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html
+    # [4]: https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk
+    # [5]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
+    # [6]: https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context
+    # [7]: https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html
+    # [8]: https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html
     #
     # @option params [Hash<String,String>] :encryption_context
     #   Specifies the encryption context that will be used when encrypting the
     #   private key in the data key pair.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   An *encryption context* is a collection of non-secret key-value pairs
     #   that represent additional authenticated data. When you use an
@@ -4349,6 +4567,35 @@ module Aws::KMS
     #   [1]: https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token
     #   [2]: https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token
     #
+    # @option params [Types::RecipientInfo] :recipient
+    #   A signed [attestation document][1] from an Amazon Web Services Nitro
+    #   enclave and the encryption algorithm to use with the enclave's public
+    #   key. The only valid encryption algorithm is `RSAES_OAEP_SHA_256`.
+    #
+    #   This parameter only supports attestation documents for Amazon Web
+    #   Services Nitro Enclaves. To include this parameter, use the [Amazon
+    #   Web Services Nitro Enclaves SDK][2] or any Amazon Web Services SDK.
+    #
+    #   When you use this parameter, instead of returning a plaintext copy of
+    #   the private data key, KMS encrypts the plaintext private data key
+    #   under the public key in the attestation document, and returns the
+    #   resulting ciphertext in the `CiphertextForRecipient` field in the
+    #   response. This ciphertext can be decrypted only with the private key
+    #   in the enclave. The `CiphertextBlob` field in the response contains a
+    #   copy of the private data key encrypted under the KMS key specified by
+    #   the `KeyId` parameter. The `PrivateKeyPlaintext` field in the response
+    #   is null or empty.
+    #
+    #   For information about the interaction between KMS and Amazon Web
+    #   Services Nitro Enclaves, see [How Amazon Web Services Nitro Enclaves
+    #   uses KMS][3] in the *Key Management Service Developer Guide*.
+    #
+    #
+    #
+    #   [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc
+    #   [2]: https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk
+    #   [3]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
+    #
     # @return [Types::GenerateDataKeyPairResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
     #
     #   * {Types::GenerateDataKeyPairResponse#private_key_ciphertext_blob #private_key_ciphertext_blob} => String
@@ -4356,6 +4603,7 @@ module Aws::KMS
     #   * {Types::GenerateDataKeyPairResponse#public_key #public_key} => String
     #   * {Types::GenerateDataKeyPairResponse#key_id #key_id} => String
     #   * {Types::GenerateDataKeyPairResponse#key_pair_spec #key_pair_spec} => String
+    #   * {Types::GenerateDataKeyPairResponse#ciphertext_for_recipient #ciphertext_for_recipient} => String
     #
     #
     # @example Example: To generate an RSA key pair for encryption and decryption
@@ -4377,6 +4625,33 @@ module Aws::KMS
     #     public_key: "<binary data>", # The public key (plaintext) of the RSA data key pair.
     #   }
     #
+    # @example Example: To generate a data key pair for a Nitro enclave
+    #
+    #   # The following example includes the Recipient parameter with a signed attestation document from an AWS Nitro enclave.
+    #   # Instead of returning a plaintext copy of the private data key, GenerateDataKeyPair returns a copy of the private data
+    #   # key encrypted by the public key from the attestation document (CiphertextForRecipient). It returns the public data key
+    #   # (PublicKey) and a copy of private data key encrypted under the specified KMS key (PrivateKeyCiphertextBlob), as usual,
+    #   # but plaintext private data key field (PrivateKeyPlaintext) is null or empty. 
+    #
+    #   resp = client.generate_data_key_pair({
+    #     key_id: "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab", # The key ID of the symmetric encryption KMS key that encrypts the private RSA key in the data key pair.
+    #     key_pair_spec: "RSA_3072", # The requested key spec of the RSA data key pair.
+    #     recipient: {
+    #       attestation_document: "<attestation document>", 
+    #       key_encryption_algorithm: "RSAES_OAEP_SHA_256", 
+    #     }, # Specifies the attestation document from the Nitro enclave and the encryption algorithm to use with the public key from the attestation document.
+    #   })
+    #
+    #   resp.to_h outputs the following:
+    #   {
+    #     ciphertext_for_recipient: "<binary data>", # The private key of the RSA data key pair encrypted by the public key from the attestation document
+    #     key_id: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab", # The key ARN of the symmetric encryption KMS key that was used to encrypt the PrivateKeyCiphertextBlob.
+    #     key_pair_spec: "RSA_3072", # The actual key spec of the RSA data key pair.
+    #     private_key_ciphertext_blob: "<binary data>", # The private key of the RSA data key pair encrypted by the KMS key.
+    #     private_key_plaintext: "", # This field is null or empty
+    #     public_key: "<binary data>", # The public key (plaintext) of the RSA data key pair.
+    #   }
+    #
     # @example Request syntax with placeholder values
     #
     #   resp = client.generate_data_key_pair({
@@ -4386,6 +4661,10 @@ module Aws::KMS
     #     key_id: "KeyIdType", # required
     #     key_pair_spec: "RSA_2048", # required, accepts RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256, ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SM2
     #     grant_tokens: ["GrantTokenType"],
+    #     recipient: {
+    #       key_encryption_algorithm: "RSAES_OAEP_SHA_256", # accepts RSAES_OAEP_SHA_256
+    #       attestation_document: "data",
+    #     },
     #   })
     #
     # @example Response structure
@@ -4395,6 +4674,7 @@ module Aws::KMS
     #   resp.public_key #=> String
     #   resp.key_id #=> String
     #   resp.key_pair_spec #=> String, one of "RSA_2048", "RSA_3072", "RSA_4096", "ECC_NIST_P256", "ECC_NIST_P384", "ECC_NIST_P521", "ECC_SECG_P256K1", "SM2"
+    #   resp.ciphertext_for_recipient #=> String
     #
     # @see http://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GenerateDataKeyPair AWS API Documentation
     #
@@ -4448,12 +4728,12 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][3] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\:
-    # [kms:GenerateDataKeyPairWithoutPlaintext][4] (key policy)
+    # **Required permissions**: [kms:GenerateDataKeyPairWithoutPlaintext][4]
+    # (key policy)
     #
     # **Related operations:**
     #
@@ -4477,6 +4757,10 @@ module Aws::KMS
     # @option params [Hash<String,String>] :encryption_context
     #   Specifies the encryption context that will be used when encrypting the
     #   private key in the data key pair.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   An *encryption context* is a collection of non-secret key-value pairs
     #   that represent additional authenticated data. When you use an
@@ -4629,7 +4913,7 @@ module Aws::KMS
     # and 256-bit data keys, use the `KeySpec` parameter.
     #
     # To generate an SM4 data key (China Regions only), specify a `KeySpec`
-    # value of `AES_128` or `NumberOfBytes` value of `128`. The symmetric
+    # value of `AES_128` or `NumberOfBytes` value of `16`. The symmetric
     # encryption key used in China Regions to encrypt your data key is an
     # SM4 encryption key.
     #
@@ -4648,11 +4932,11 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][2] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:GenerateDataKeyWithoutPlaintext][3]
+    # **Required permissions**: [kms:GenerateDataKeyWithoutPlaintext][3]
     # (key policy)
     #
     # **Related operations:**
@@ -4701,6 +4985,10 @@ module Aws::KMS
     # @option params [Hash<String,String>] :encryption_context
     #   Specifies the encryption context that will be used when encrypting the
     #   data key.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   An *encryption context* is a collection of non-secret key-value pairs
     #   that represent additional authenticated data. When you use an
@@ -4815,13 +5103,13 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][3] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:GenerateMac][4] (key policy)
+    # **Required permissions**: [kms:GenerateMac][4] (key policy)
     #
-    # **Related operations**\: VerifyMac
+    # **Related operations**: VerifyMac
     #
     #
     #
@@ -4927,26 +5215,33 @@ module Aws::KMS
     # the byte string in the CloudHSM cluster associated with an CloudHSM
     # key store, use the `CustomKeyStoreId` parameter.
     #
-    # Applications in Amazon Web Services Nitro Enclaves can call this
-    # operation by using the [Amazon Web Services Nitro Enclaves Development
-    # Kit][1]. For information about the supporting parameters, see [How
-    # Amazon Web Services Nitro Enclaves use KMS][2] in the *Key Management
-    # Service Developer Guide*.
+    # `GenerateRandom` also supports [Amazon Web Services Nitro
+    # Enclaves][1], which provide an isolated compute environment in Amazon
+    # EC2. To call `GenerateRandom` for a Nitro enclave, use the [Amazon Web
+    # Services Nitro Enclaves SDK][2] or any Amazon Web Services SDK. Use
+    # the `Recipient` parameter to provide the attestation document for the
+    # enclave. Instead of plaintext bytes, the response includes the
+    # plaintext bytes encrypted under the public key from the attestation
+    # document (`CiphertextForRecipient`).For information about the
+    # interaction between KMS and Amazon Web Services Nitro Enclaves, see
+    # [How Amazon Web Services Nitro Enclaves uses KMS][3] in the *Key
+    # Management Service Developer Guide*.
     #
     # For more information about entropy and random number generation, see
-    # [Key Management Service Cryptographic Details][3].
+    # [Key Management Service Cryptographic Details][4].
     #
-    # **Cross-account use**\: Not applicable. `GenerateRandom` does not use
+    # **Cross-account use**: Not applicable. `GenerateRandom` does not use
     # any account-specific resources, such as KMS keys.
     #
-    # **Required permissions**\: [kms:GenerateRandom][4] (IAM policy)
+    # **Required permissions**: [kms:GenerateRandom][5] (IAM policy)
     #
     #
     #
-    # [1]: https://github.com/aws/aws-nitro-enclaves-sdk-c
-    # [2]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
-    # [3]: https://docs.aws.amazon.com/kms/latest/cryptographic-details/
-    # [4]: https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html
+    # [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html
+    # [2]: https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk
+    # [3]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
+    # [4]: https://docs.aws.amazon.com/kms/latest/cryptographic-details/
+    # [5]: https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html
     #
     # @option params [Integer] :number_of_bytes
     #   The length of the random byte string. This parameter is required.
@@ -4960,9 +5255,36 @@ module Aws::KMS
     #   specify the ID of an external key store, `GenerateRandom` throws an
     #   `UnsupportedOperationException`.
     #
+    # @option params [Types::RecipientInfo] :recipient
+    #   A signed [attestation document][1] from an Amazon Web Services Nitro
+    #   enclave and the encryption algorithm to use with the enclave's public
+    #   key. The only valid encryption algorithm is `RSAES_OAEP_SHA_256`.
+    #
+    #   This parameter only supports attestation documents for Amazon Web
+    #   Services Nitro Enclaves. To include this parameter, use the [Amazon
+    #   Web Services Nitro Enclaves SDK][2] or any Amazon Web Services SDK.
+    #
+    #   When you use this parameter, instead of returning plaintext bytes, KMS
+    #   encrypts the plaintext bytes under the public key in the attestation
+    #   document, and returns the resulting ciphertext in the
+    #   `CiphertextForRecipient` field in the response. This ciphertext can be
+    #   decrypted only with the private key in the enclave. The `Plaintext`
+    #   field in the response is null or empty.
+    #
+    #   For information about the interaction between KMS and Amazon Web
+    #   Services Nitro Enclaves, see [How Amazon Web Services Nitro Enclaves
+    #   uses KMS][3] in the *Key Management Service Developer Guide*.
+    #
+    #
+    #
+    #   [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc
+    #   [2]: https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk
+    #   [3]: https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html
+    #
     # @return [Types::GenerateRandomResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
     #
     #   * {Types::GenerateRandomResponse#plaintext #plaintext} => String
+    #   * {Types::GenerateRandomResponse#ciphertext_for_recipient #ciphertext_for_recipient} => String
     #
     #
     # @example Example: To generate random data
@@ -4978,16 +5300,41 @@ module Aws::KMS
     #     plaintext: "<binary data>", # The random data.
     #   }
     #
+    # @example Example: To generate random data
+    #
+    #   # The following example includes the Recipient parameter with a signed attestation document from an AWS Nitro enclave.
+    #   # Instead of returning a plaintext (unencrypted) byte string, GenerateRandom returns the byte string encrypted by the
+    #   # public key from the enclave's attestation document.
+    #
+    #   resp = client.generate_random({
+    #     number_of_bytes: 1024, # The length of the random byte string
+    #     recipient: {
+    #       attestation_document: "<attestation document>", 
+    #       key_encryption_algorithm: "RSAES_OAEP_SHA_256", 
+    #     }, # Specifies the attestation document from the Nitro enclave and the encryption algorithm to use with the public key from the attestation document
+    #   })
+    #
+    #   resp.to_h outputs the following:
+    #   {
+    #     ciphertext_for_recipient: "<binary data>", # The random data encrypted under the public key from the attestation document
+    #     plaintext: "", # This field is null or empty
+    #   }
+    #
     # @example Request syntax with placeholder values
     #
     #   resp = client.generate_random({
     #     number_of_bytes: 1,
     #     custom_key_store_id: "CustomKeyStoreIdType",
+    #     recipient: {
+    #       key_encryption_algorithm: "RSAES_OAEP_SHA_256", # accepts RSAES_OAEP_SHA_256
+    #       attestation_document: "data",
+    #     },
     #   })
     #
     # @example Response structure
     #
     #   resp.plaintext #=> String
+    #   resp.ciphertext_for_recipient #=> String
     #
     # @see http://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GenerateRandom AWS API Documentation
     #
@@ -5000,12 +5347,12 @@ module Aws::KMS
 
     # Gets a key policy attached to the specified KMS key.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:GetKeyPolicy][1] (key policy)
+    # **Required permissions**: [kms:GetKeyPolicy][1] (key policy)
     #
-    # **Related operations**\: PutKeyPolicy
+    # **Related operations**: PutKeyPolicy
     #
     #
     #
@@ -5116,11 +5463,11 @@ module Aws::KMS
     #   If you cancel the deletion, the original key rotation status returns
     #   to `true`.
     #
-    # **Cross-account use**\: Yes. To perform this operation on a KMS key in
+    # **Cross-account use**: Yes. To perform this operation on a KMS key in
     # a different Amazon Web Services account, specify the key ARN in the
     # value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:GetKeyRotationStatus][11] (key policy)
+    # **Required permissions**: [kms:GetKeyRotationStatus][11] (key policy)
     #
     # **Related operations:**
     #
@@ -5223,11 +5570,10 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][2] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:GetParametersForImport][3] (key
-    # policy)
+    # **Required permissions**: [kms:GetParametersForImport][3] (key policy)
     #
     # **Related operations:**
     #
@@ -5348,12 +5694,12 @@ module Aws::KMS
     # returns important information about the public key in the response,
     # including:
     #
-    # * [KeySpec][2]\: The type of key material in the public key, such as
+    # * [KeySpec][2]: The type of key material in the public key, such as
     #   `RSA_4096` or `ECC_NIST_P521`.
     #
-    # * [KeyUsage][3]\: Whether the key is used for encryption or signing.
+    # * [KeyUsage][3]: Whether the key is used for encryption or signing.
     #
-    # * [EncryptionAlgorithms][4] or [SigningAlgorithms][5]\: A list of the
+    # * [EncryptionAlgorithms][4] or [SigningAlgorithms][5]: A list of the
     #   encryption algorithms or the signing algorithms for the key.
     #
     # Although KMS cannot enforce these restrictions on external operations,
@@ -5373,13 +5719,13 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][7] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:GetPublicKey][8] (key policy)
+    # **Required permissions**: [kms:GetPublicKey][8] (key policy)
     #
-    # **Related operations**\: CreateKey
+    # **Related operations**: CreateKey
     #
     #
     #
@@ -5544,10 +5890,10 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][4] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:ImportKeyMaterial][5] (key policy)
+    # **Required permissions**: [kms:ImportKeyMaterial][5] (key policy)
     #
     # **Related operations:**
     #
@@ -5679,10 +6025,10 @@ module Aws::KMS
     # Web Services creates in your account, including predefined aliases, do
     # not count against your [KMS aliases quota][1].
     #
-    # **Cross-account use**\: No. `ListAliases` does not return aliases in
+    # **Cross-account use**: No. `ListAliases` does not return aliases in
     # other Amazon Web Services accounts.
     #
-    # **Required permissions**\: [kms:ListAliases][2] (IAM policy)
+    # **Required permissions**: [kms:ListAliases][2] (IAM policy)
     #
     # For details, see [Controlling access to aliases][3] in the *Key
     # Management Service Developer Guide*.
@@ -5843,11 +6189,11 @@ module Aws::KMS
     #
     #  </note>
     #
-    # **Cross-account use**\: Yes. To perform this operation on a KMS key in
+    # **Cross-account use**: Yes. To perform this operation on a KMS key in
     # a different Amazon Web Services account, specify the key ARN in the
     # value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:ListGrants][4] (key policy)
+    # **Required permissions**: [kms:ListGrants][4] (key policy)
     #
     # **Related operations:**
     #
@@ -6022,10 +6368,10 @@ module Aws::KMS
     # GetKeyPolicy operation. However, the only valid policy name is
     # `default`.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:ListKeyPolicies][1] (key policy)
+    # **Required permissions**: [kms:ListKeyPolicies][1] (key policy)
     #
     # **Related operations:**
     #
@@ -6120,10 +6466,10 @@ module Aws::KMS
     # Gets a list of all KMS keys in the caller's Amazon Web Services
     # account and Region.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:ListKeys][1] (IAM policy)
+    # **Required permissions**: [kms:ListKeys][1] (IAM policy)
     #
     # **Related operations:**
     #
@@ -6235,10 +6581,10 @@ module Aws::KMS
     # Services General Reference*. For information about using tags in KMS,
     # see [Tagging keys][2].
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:ListResourceTags][3] (key policy)
+    # **Required permissions**: [kms:ListResourceTags][3] (key policy)
     #
     # **Related operations:**
     #
@@ -6362,14 +6708,14 @@ module Aws::KMS
     # Guide</i> </i>. For examples of working with grants in several
     # programming languages, see [Programming grants][2].
     #
-    # **Cross-account use**\: You must specify a principal in your Amazon
-    # Web Services account. However, this operation can return grants in any
+    # **Cross-account use**: You must specify a principal in your Amazon Web
+    # Services account. However, this operation can return grants in any
     # Amazon Web Services account. You do not need `kms:ListRetirableGrants`
     # permission (or any other additional permission) in any Amazon Web
     # Services account other than your own.
     #
-    # **Required permissions**\: [kms:ListRetirableGrants][3] (IAM policy)
-    # in your Amazon Web Services account.
+    # **Required permissions**: [kms:ListRetirableGrants][3] (IAM policy) in
+    # your Amazon Web Services account.
     #
     # **Related operations:**
     #
@@ -6498,12 +6844,12 @@ module Aws::KMS
     # programming languages, see [Setting a key policy][3] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:PutKeyPolicy][4] (key policy)
+    # **Required permissions**: [kms:PutKeyPolicy][4] (key policy)
     #
-    # **Related operations**\: GetKeyPolicy
+    # **Related operations**: GetKeyPolicy
     #
     #
     #
@@ -6686,12 +7032,12 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][6] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. The source KMS key and destination KMS
-    # key can be in different Amazon Web Services accounts. Either or both
-    # KMS keys can be in a different account than the caller. To specify a
-    # KMS key in a different account, you must use its key ARN or alias ARN.
+    # **Cross-account use**: Yes. The source KMS key and destination KMS key
+    # can be in different Amazon Web Services accounts. Either or both KMS
+    # keys can be in a different account than the caller. To specify a KMS
+    # key in a different account, you must use its key ARN or alias ARN.
     #
-    # **Required permissions**\:
+    # **Required permissions**:
     #
     # * [kms:ReEncryptFrom][7] permission on the source KMS key (key policy)
     #
@@ -6811,6 +7157,10 @@ module Aws::KMS
     # @option params [Hash<String,String>] :destination_encryption_context
     #   Specifies that encryption context to use when the reencrypting the
     #   data.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   A destination encryption context is valid only when the destination
     #   KMS key is a symmetric encryption KMS key. The standard ciphertext
@@ -6992,10 +7342,10 @@ module Aws::KMS
     #
     #  </note>
     #
-    # **Cross-account use**\: No. You cannot use this operation to create a
+    # **Cross-account use**: No. You cannot use this operation to create a
     # replica key in a different Amazon Web Services account.
     #
-    # **Required permissions**\:
+    # **Required permissions**:
     #
     # * `kms:ReplicateKey` on the primary key (in the primary key's
     #   Region). Include this permission in the primary key's key policy.
@@ -7153,6 +7503,10 @@ module Aws::KMS
     #   A description of the KMS key. The default value is an empty string (no
     #   description).
     #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
+    #
     #   The description is not a shared property of multi-Region keys. You can
     #   specify the same description or a different description for each key
     #   in a set of related multi-Region keys. KMS does not synchronize this
@@ -7162,6 +7516,10 @@ module Aws::KMS
     #   Assigns one or more tags to the replica key. Use this parameter to tag
     #   the KMS key when it is created. To tag an existing KMS key, use the
     #   TagResource operation.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   <note markdown="1"> Tagging or untagging a KMS key can allow or deny permission to the KMS
     #   key. For details, see [ABAC for KMS][1] in the *Key Management Service
@@ -7327,10 +7685,10 @@ module Aws::KMS
     # Guide</i> </i>. For examples of working with grants in several
     # programming languages, see [Programming grants][4].
     #
-    # **Cross-account use**\: Yes. You can retire a grant on a KMS key in a
+    # **Cross-account use**: Yes. You can retire a grant on a KMS key in a
     # different Amazon Web Services account.
     #
-    # **Required permissions:**\:Permission to retire a grant is determined
+    # **Required permissions:**:Permission to retire a grant is determined
     # primarily by the grant. For details, see [Retiring and revoking
     # grants][2] in the *Key Management Service Developer Guide*.
     #
@@ -7425,11 +7783,11 @@ module Aws::KMS
     # Guide</i> </i>. For examples of working with grants in several
     # programming languages, see [Programming grants][4].
     #
-    # **Cross-account use**\: Yes. To perform this operation on a KMS key in
+    # **Cross-account use**: Yes. To perform this operation on a KMS key in
     # a different Amazon Web Services account, specify the key ARN in the
     # value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:RevokeGrant][5] (key policy).
+    # **Required permissions**: [kms:RevokeGrant][5] (key policy).
     #
     # **Related operations:**
     #
@@ -7546,10 +7904,10 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][6] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: kms:ScheduleKeyDeletion (key policy)
+    # **Required permissions**: kms:ScheduleKeyDeletion (key policy)
     #
     # **Related operations**
     #
@@ -7689,13 +8047,13 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][3] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:Sign][4] (key policy)
+    # **Required permissions**: [kms:Sign][4] (key policy)
     #
-    # **Related operations**\: Verify
+    # **Related operations**: Verify
     #
     #
     #
@@ -7899,10 +8257,10 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][9] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:TagResource][10] (key policy)
+    # **Required permissions**: [kms:TagResource][10] (key policy)
     #
     # **Related operations**
     #
@@ -7943,10 +8301,12 @@ module Aws::KMS
     #   DescribeKey.
     #
     # @option params [required, Array<Types::Tag>] :tags
-    #   One or more tags.
+    #   One or more tags. Each tag consists of a tag key and a tag value. The
+    #   tag value can be an empty (null) string.
     #
-    #   Each tag consists of a tag key and a tag value. The tag value can be
-    #   an empty (null) string.
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   You cannot have more than one tag on a KMS key with the same tag key.
     #   If you specify an existing tag key with a different tag value, KMS
@@ -8013,10 +8373,10 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][5] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:UntagResource][6] (key policy)
+    # **Required permissions**: [kms:UntagResource][6] (key policy)
     #
     # **Related operations**
     #
@@ -8117,7 +8477,7 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][2] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
     # **Required permissions**
@@ -8151,6 +8511,10 @@ module Aws::KMS
     #   begin with `alias/` followed by the alias name, such as
     #   `alias/ExampleAlias`. You cannot use `UpdateAlias` to change the alias
     #   name.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     # @option params [required, String] :target_key_id
     #   Identifies the [customer managed key][1] to associate with the alias.
@@ -8289,10 +8653,10 @@ module Aws::KMS
     # If the operation succeeds, it returns a JSON object with no
     # properties.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a
+    # **Cross-account use**: No. You cannot perform this operation on a
     # custom key store in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:UpdateCustomKeyStore][2] (IAM policy)
+    # **Required permissions**: [kms:UpdateCustomKeyStore][2] (IAM policy)
     #
     # **Related operations:**
     #
@@ -8320,6 +8684,10 @@ module Aws::KMS
     #   Changes the friendly name of the custom key store to the value that
     #   you specify. The custom key store name must be unique in the Amazon
     #   Web Services account.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     #   To change this value, an CloudHSM key store must be disconnected. An
     #   external key store can be connected or disconnected.
@@ -8474,7 +8842,7 @@ module Aws::KMS
     #   # worked, use the DescribeCustomKeyStores operation.
     #
     #   resp = client.update_custom_key_store({
-    #     cloud_hsm_cluster_id: "cluster-1a23b4cdefg", # The ID of the AWS CloudHSM cluster that you want to associate with the custom key store. This cluster must be related to the original CloudHSM cluster for this key store.
+    #     cloud_hsm_cluster_id: "cluster-234abcdefABC", # The ID of the AWS CloudHSM cluster that you want to associate with the custom key store. This cluster must be related to the original CloudHSM cluster for this key store.
     #     custom_key_store_id: "cks-1234567890abcdef0", # The ID of the custom key store that you are updating.
     #   })
     #
@@ -8565,10 +8933,10 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][1] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: No. You cannot perform this operation on a KMS
+    # **Cross-account use**: No. You cannot perform this operation on a KMS
     # key in a different Amazon Web Services account.
     #
-    # **Required permissions**\: [kms:UpdateKeyDescription][2] (key policy)
+    # **Required permissions**: [kms:UpdateKeyDescription][2] (key policy)
     #
     # **Related operations**
     #
@@ -8598,6 +8966,10 @@ module Aws::KMS
     #
     # @option params [required, String] :description
     #   New description for the KMS key.
+    #
+    #   Do not include confidential or sensitive information in this field.
+    #   This field may be displayed in plaintext in CloudTrail logs and other
+    #   output.
     #
     # @return [Struct] Returns an empty {Seahorse::Client::Response response}.
     #
@@ -8681,10 +9053,10 @@ module Aws::KMS
     # This operation does not return any output. To verify that primary key
     # is changed, use the DescribeKey operation.
     #
-    # **Cross-account use**\: No. You cannot use this operation in a
+    # **Cross-account use**: No. You cannot use this operation in a
     # different Amazon Web Services account.
     #
-    # **Required permissions**\:
+    # **Required permissions**:
     #
     # * `kms:UpdatePrimaryRegion` on the current primary key (in the primary
     #   key's Region). Include this permission primary key's key policy.
@@ -8810,13 +9182,13 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][3] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:Verify][4] (key policy)
+    # **Required permissions**: [kms:Verify][4] (key policy)
     #
-    # **Related operations**\: Sign
+    # **Related operations**: Sign
     #
     #
     #
@@ -9015,13 +9387,13 @@ module Aws::KMS
     # key state. For details, see [Key states of KMS keys][3] in the *Key
     # Management Service Developer Guide*.
     #
-    # **Cross-account use**\: Yes. To perform this operation with a KMS key
+    # **Cross-account use**: Yes. To perform this operation with a KMS key
     # in a different Amazon Web Services account, specify the key ARN or
     # alias ARN in the value of the `KeyId` parameter.
     #
-    # **Required permissions**\: [kms:VerifyMac][4] (key policy)
+    # **Required permissions**: [kms:VerifyMac][4] (key policy)
     #
-    # **Related operations**\: GenerateMac
+    # **Related operations**: GenerateMac
     #
     #
     #
@@ -9132,7 +9504,7 @@ module Aws::KMS
         params: params,
         config: config)
       context[:gem_name] = 'aws-sdk-kms'
-      context[:gem_version] = '1.63.0'
+      context[:gem_version] = '1.64.0'
       Seahorse::Client::Request.new(handlers, context)
     end
 
