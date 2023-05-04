@@ -35,4 +35,20 @@ title: Schadenfreude
 
 - A woman might feel Schadenfreude when she sees her ex-partner going through a bad phase in life.
 
-It is considered a negative emotion, and one must make a conscious effort to avoid feeling it. Instead, try to empathize with others and find joy in their success, happiness, and well-being.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+It is considered a negative emotion, and one must make a conscious effort to avoid feeling it. Instead, try to empathize with others and find joy in their success, happiness, and well-being.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>---
+layout: post
+image: assets/images/posts/Schadenfreude.png
+title: "Schadenfreude"
+categories: [Vocabulary]
+tags: [German]
+---
+
+Schadenfreude is a compound word in German, which means "harm-joy" or "to take pleasure from someone else's misfortune." Schadenfreude is somewhat of a cultural phenomenon peculiar to Germans. It is not something that is easy to describe in a single word in other languages.
+ 
+Synonyms of Schadenfreude include joy in the misfortune of others, gloating, and malicious pleasure. Its opposite is empathy or sympathy. An empathetic person feels and shares the pain of others, while a person who feels Schadenfreude is enjoying the pain or suffering of others.
+
+Although Schadenfreude is not a positive emotion, it is common for people to experience it at some point in their lives. Even people who are generally kind-hearted may feel a sense of Schadenfreude when someone who has wronged them experiences a setback.
+
+Examples of Schadenfreude may include laughing at the misfortunes of others, high-fiving a friend when your shared rival suffers a loss, or being secretly happy when your colleague fails to get the promotion they were gunning for.
+
+In conclusion, while Schadenfreude is not a positive emotion, it is a complex feeling that people may experience from time to time. It is important to remember, however, that we should always try to be kind and compassionate towards others, especially during difficult times.\ <a id="yg-widget-0" class="youglish-widget" data-query="Schadenfreude" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Schadenfreude%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
