@@ -150,6 +150,13 @@ PublicSuffix.domain("something.blogspot.com")
 # => "blogspot.com"
 ```
 
+## Add domain to list
+
+If you want to manually add a domain to the list just run:
+
+```ruby
+PublicSuffix::List.default << PublicSuffix::Rule.factory('onmicrosoft.com')
+```
 
 ## What is the Public Suffix List?
 
@@ -202,7 +209,7 @@ See the [CHANGELOG.md](CHANGELOG.md) file for details.
 
 ## License
 
-Copyright (c) 2009-2022 Simone Carletti. This is Free Software distributed under the MIT license.
+Copyright (c) 2009-2023 Simone Carletti. This is Free Software distributed under the MIT license.
 
 The [Public Suffix List source](https://publicsuffix.org/list/) is subject to the terms of the Mozilla Public License, v. 2.0.
 
@@ -214,4 +221,4 @@ sld = Second level domain, a domain that is directly below a top-level domain. F
 
 trd = Transit routing domain, or known as a subdomain. This is the part of the domain that is before the sld or root domain. For example, in `https://www.mozilla.org/en-US/`, `www` is the trd.
 
-FQDN = Fully Qualified Domain Names, are domain names that are written with the hostname and the domain name, and include the top-level domain, the format looks like `[hostname].[domain].[tld].` for ex. `[www].[mozilla].[org]`. 
+FQDN = Fully Qualified Domain Names, are domain names that are written with the hostname and the domain name, and include the top-level domain, the format looks like `[hostname].[domain].[tld].` for ex. `[www].[mozilla].[org]`.

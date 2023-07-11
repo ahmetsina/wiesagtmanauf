@@ -2,6 +2,18 @@
 
 This project uses [Semantic Versioning 2.0.0](https://semver.org/).
 
+## 5.0.3
+
+### Fixed
+
+- Fixed automated release workflow.
+
+## 5.0.2
+
+### Changed
+
+- Updated definitions.
+
 ## 5.0.1
 
 ### Changed
