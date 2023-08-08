@@ -50,8 +50,6 @@ module MiniMime
   end
 
   class Db
-    LOCK = Mutex.new
-
     def self.lookup_by_filename(filename)
       extension = File.extname(filename)
       return if extension.empty?
@@ -60,18 +58,14 @@ module MiniMime
     end
 
     def self.lookup_by_extension(extension)
-      LOCK.synchronize do
-        @db ||= new
-        @db.lookup_by_extension(extension) ||
-          @db.lookup_by_extension(extension.downcase)
-      end
+      @db ||= new
+      @db.lookup_by_extension(extension) ||
+        @db.lookup_by_extension(extension.downcase)
     end
 
     def self.lookup_by_content_type(content_type)
-      LOCK.synchronize do
-        @db ||= new
-        @db.lookup_by_content_type(content_type)
-      end
+      @db ||= new
+      @db.lookup_by_content_type(content_type)
     end
 
     class Cache
@@ -91,14 +85,40 @@ module MiniMime
       end
     end
 
+    if ::File.method_defined?(:pread)
+      PReadFile = ::File
+    else
+      # For Windows support
+      class PReadFile
+        def initialize(filename)
+          @mutex = Mutex.new
+          # We must open the file in binary mode
+          # otherwise Ruby's automatic line terminator
+          # translation will skew the row size
+          @file = ::File.open(filename, 'rb')
+        end
+
+        def readline(*args)
+          @file.readline(*args)
+        end
+
+        def pread(size, offset)
+          @mutex.synchronize do
+            @file.seek(offset, IO::SEEK_SET)
+            @file.read(size)
+          end
+        end
+      end
+    end
+
     class RandomAccessDb
       MAX_CACHED = 100
 
       def initialize(path, sort_order)
         @path = path
-        @file = File.open(@path)
+        @file = PReadFile.new(@path)
 
-        @row_length = @file.readline.length
+        @row_length = @file.readline("\n").length
         @file_length = File.size(@path)
         @rows = @file_length / @row_length
 
@@ -146,8 +166,7 @@ module MiniMime
       end
 
       def resolve(row)
-        @file.seek(row * @row_length)
-        Info.new(@file.readline)
+        Info.new(@file.pread(@row_length, row * @row_length).force_encoding(Encoding::UTF_8))
       end
     end
 

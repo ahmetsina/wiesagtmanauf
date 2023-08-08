@@ -1,21 +1,22 @@
 # -*- encoding: utf-8 -*-
-# stub: mini_mime 1.1.2 ruby lib
+# stub: mini_mime 1.1.4 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "mini_mime".freeze
-  s.version = "1.1.2"
+  s.version = "1.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Sam Saffron".freeze]
   s.bindir = "exe".freeze
-  s.date = "2021-10-11"
-  s.description = "A lightweight mime type lookup toy".freeze
+  s.date = "2023-08-08"
+  s.description = "A minimal mime type library".freeze
   s.email = ["sam.saffron@gmail.com".freeze]
   s.homepage = "https://github.com/discourse/mini_mime".freeze
   s.licenses = ["MIT".freeze]
+  s.required_ruby_version = Gem::Requirement.new(">= 2.6.0".freeze)
   s.rubygems_version = "3.3.26".freeze
-  s.summary = "A lightweight mime type lookup toy".freeze
+  s.summary = "A minimal mime type library".freeze
 
   s.installed_by_version = "3.3.26" if s.respond_to? :installed_by_version
 
