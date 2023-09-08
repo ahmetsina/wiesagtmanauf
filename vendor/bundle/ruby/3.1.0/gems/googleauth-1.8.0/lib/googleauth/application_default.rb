@@ -21,7 +21,7 @@ module Google
   module Auth
     NOT_FOUND_ERROR = <<~ERROR_MESSAGE.freeze
       Could not load the default credentials. Browse to
-      https://developers.google.com/accounts/docs/application-default-credentials
+      https://cloud.google.com/docs/authentication/provide-credentials-adc
       for more information
     ERROR_MESSAGE
 
@@ -57,7 +57,7 @@ module Google
       return creds unless creds.nil?
       unless GCECredentials.on_gce? options
         # Clear cache of the result of GCECredentials.on_gce?
-        GCECredentials.unmemoize_all
+        GCECredentials.reset_cache
         raise NOT_FOUND_ERROR
       end
       GCECredentials.new options.merge(scope: scope)
