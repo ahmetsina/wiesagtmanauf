@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
-# stub: googleauth 1.8.0 ruby lib
+# stub: googleauth 1.8.1 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "googleauth".freeze
-  s.version = "1.8.0"
+  s.version = "1.8.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "bug_tracker_uri" => "https://github.com/googleapis/google-auth-library-ruby/issues", "changelog_uri" => "https://github.com/googleapis/google-auth-library-ruby/blob/main/CHANGELOG.md", "source_code_uri" => "https://github.com/googleapis/google-auth-library-ruby" } if s.respond_to? :metadata=
   s.require_paths = ["lib".freeze]
   s.authors = ["Tim Emiola".freeze]
-  s.date = "2023-09-08"
+  s.date = "2023-09-20"
   s.description = "Implements simple authorization for accessing Google APIs, and provides support for Application Default Credentials.".freeze
   s.email = ["temiola@google.com".freeze]
   s.homepage = "https://github.com/googleapis/google-auth-library-ruby".freeze
