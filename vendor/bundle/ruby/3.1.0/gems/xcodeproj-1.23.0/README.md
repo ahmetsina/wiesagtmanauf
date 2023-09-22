@@ -1,6 +1,6 @@
 # Xcodeproj
 
-[![Build Status](https://img.shields.io/github/workflow/status/CocoaPods/Xcodeproj/Specs)](https://github.com/CocoaPods/Xcodeproj/actions)
+[![Build Status](https://github.com/CocoaPods/Xcodeproj/workflows/Specs/badge.svg)](https://github.com/CocoaPods/Xcodeproj/actions/workflows/Specs.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/40ae104586c859d3581e/maintainability)](https://codeclimate.com/github/CocoaPods/Xcodeproj/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/40ae104586c859d3581e/test_coverage)](https://codeclimate.com/github/CocoaPods/Xcodeproj/test_coverage)
 
