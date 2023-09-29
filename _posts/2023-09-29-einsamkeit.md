@@ -82,4 +82,26 @@ The opposite of **Einsamkeit** is **Gesellschaft**, which means "company" or "co
 ### Gesellschaft
 1. "In guter Gesellschaft fühlt man sich nicht einsam." (In good company, one doesn't feel lonely.)
 2. "Er genoss die Gesellschaft seiner Freunde." (He enjoyed the company of his friends.)
-3. "Die Feier war ein fröhlicher Anlass in angenehmer Gesellschaft." (The party was a joyful occasion in pleasant company.)\ <a id="yg-widget-0" class="youglish-widget" data-query="Einsamkeit" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Einsamkeit%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+3. "Die Feier war ein fröhlicher Anlass in angenehmer Gesellschaft." (The party was a joyful occasion in pleasant company.)\ <a id="yg-widget-0" class="youglish-widget" data-query="Einsamkeit" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Einsamkeit%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>---
+layout: post
+image: assets/images/posts/Einsamkeit.png
+title: Einsamkeit
+categories: [German Words]
+tags: [definitions, opposites, synonyms, examples]
+---
+
+Einsamkeit (loneliness)
+
+**Definition:** Einsamkeit describes the state of being alone or feeling isolated. It refers to the feeling of being disconnected from others and lacking social interaction or companionship.
+
+**Opposite:** Geselligkeit (sociability) is the opposite of Einsamkeit. It refers to the enjoyment of being with others, engaging in social activities, and feeling connected to a community.
+
+**Synonyms:** Other words that can be used to describe Einsamkeit include Abgeschiedenheit (seclusion), Alleinsein (solitude), and Verlassenheit (desolation).
+
+**Examples:** 
+
+1. Obwohl er mitten in einer Menschenmenge stand, fühlte er eine tiefe Einsamkeit. (Even though he was surrounded by a crowd, he felt a deep sense of loneliness.)
+
+2. Die Einsamkeit auf der einsamen Insel brachte ihn dazu, seine Gedanken und Emotionen zu reflektieren. (The loneliness on the deserted island made him reflect on his thoughts and emotions.)
+
+3. Nach dem Tod seines Partners wurde er von einer tiefen Einsamkeit überwältigt. (After the death of his partner, he was overwhelmed by a profound sense of loneliness.)\ <a id="yg-widget-0" class="youglish-widget" data-query="Einsamkeit" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Einsamkeit%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
