@@ -104,4 +104,29 @@ Einsamkeit (loneliness)
 
 2. Die Einsamkeit auf der einsamen Insel brachte ihn dazu, seine Gedanken und Emotionen zu reflektieren. (The loneliness on the deserted island made him reflect on his thoughts and emotions.)
 
-3. Nach dem Tod seines Partners wurde er von einer tiefen Einsamkeit überwältigt. (After the death of his partner, he was overwhelmed by a profound sense of loneliness.)\ <a id="yg-widget-0" class="youglish-widget" data-query="Einsamkeit" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Einsamkeit%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+3. Nach dem Tod seines Partners wurde er von einer tiefen Einsamkeit überwältigt. (After the death of his partner, he was overwhelmed by a profound sense of loneliness.)\ <a id="yg-widget-0" class="youglish-widget" data-query="Einsamkeit" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Einsamkeit%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>---
+layout: post
+image: assets/images/posts/Einsamkeit.png
+title: Einsamkeit
+categories: [German]
+tags: [definitions, opposites, synonyms, examples]
+
+---
+
+**Einsamkeit**
+
+*Definition:*
+Einsamkeit (pronounced "aɪnzaːmkaɪt") is a German word that translates to "loneliness" in English. It refers to the state of feeling isolated, without companionship or emotional connection with others. Einsamkeit can occur due to various reasons, such as being physically secluded or experiencing a lack of social interaction.
+
+*Opposite:*
+The opposite of Einsamkeit is "Gesellschaft" which means "company" or "society". It represents the state of being surrounded by people and having social interactions. While Einsamkeit pertains to a feeling of solitude, Gesellschaft signifies being in the presence of others, which can create a sense of belonging and connection.
+
+*Synonyms:*
+Some synonyms for Einsamkeit include "Alleinsein" (alone), "Isolation" (isolation), and "Verlassenheit" (abandonment). These words capture similar sentiments of seclusion and emotional detachment from others.
+
+*Examples:*
+1. Nach dem Umzug in eine neue Stadt fühlte sie tiefste Einsamkeit. (After moving to a new city, she felt deep loneliness.)
+2. Der alte Mann lebte einsam in seinem Haus am See. (The old man lived alone in his house by the lake.)
+3. Trotz der Menschenmenge fühlte er eine tiefe Einsamkeit in seinem Herzen. (Despite the crowd, he felt a profound loneliness in his heart.)
+
+Einsamkeit is a complex emotion that can affect individuals differently. It is essential to acknowledge and address feelings of loneliness to maintain overall well-being.\ <a id="yg-widget-0" class="youglish-widget" data-query="Einsamkeit" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Einsamkeit%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
