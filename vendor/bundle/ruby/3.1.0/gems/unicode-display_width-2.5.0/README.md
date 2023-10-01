@@ -2,9 +2,9 @@
 
 Determines the monospace display width of a string in Ruby. Useful for all kinds of terminal-based applications. Implementation based on [EastAsianWidth.txt](https://www.unicode.org/Public/UNIDATA/EastAsianWidth.txt) and other data, 100% in Ruby. It does not rely on the OS vendor (like [wcwidth()](https://github.com/janlelis/wcswidth-ruby)) to provide an up-to-date method for measuring string width.
 
-Unicode version: **15.0.0** (September 2022)
+Unicode version: **15.1.0** (September 2023)
 
-Supported Rubies: **3.1**, **3.0**, **2.7**
+Supported Rubies: **3.2**,  **3.1**, **3.0**, **2.7**
 
 Old Rubies which might still work: **2.6**, **2.5**, **2.4**
 
@@ -12,7 +12,7 @@ For even older Rubies, use version 2.3.0 of this gem: **2.3**, **2.2**, **2.1**,
 
 ## Version 2.4.2 — Performance Updates
 
-**If you use this gem, you should really upgrade to 2.4.2. It's often 100x faster, sometimes even 1000x and more!**
+**If you use this gem, you should really upgrade to 2.4.2 or newer. It's often 100x faster, sometimes even 1000x and more!**
 
 This is possible because the gem now detects if you use very basic (and common) characters, like ASCII characters. Furthermore, the charachter width lookup code has been optimized, so even when full-width characters are involved, the gem is much faster now.
 

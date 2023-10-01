@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
-# stub: unicode-display_width 2.4.2 ruby lib
+# stub: unicode-display_width 2.5.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "unicode-display_width".freeze
-  s.version = "2.4.2"
+  s.version = "2.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "bug_tracker_uri" => "https://github.com/janlelis/unicode-display_width/issues", "changelog_uri" => "https://github.com/janlelis/unicode-display_width/blob/main/CHANGELOG.md", "rubygems_mfa_required" => "true", "source_code_uri" => "https://github.com/janlelis/unicode-display_width" } if s.respond_to? :metadata=
   s.require_paths = ["lib".freeze]
   s.authors = ["Jan Lelis".freeze]
-  s.date = "2023-01-04"
-  s.description = "[Unicode 15.0.0] Determines the monospace display width of a string using EastAsianWidth.txt, Unicode general category, and other data.".freeze
+  s.date = "2023-10-01"
+  s.description = "[Unicode 15.1.0] Determines the monospace display width of a string using EastAsianWidth.txt, Unicode general category, and other data.".freeze
   s.email = ["hi@ruby.consulting".freeze]
   s.extra_rdoc_files = ["README.md".freeze, "MIT-LICENSE.txt".freeze, "CHANGELOG.md".freeze]
   s.files = ["CHANGELOG.md".freeze, "MIT-LICENSE.txt".freeze, "README.md".freeze]
