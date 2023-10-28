@@ -94,9 +94,31 @@ module Rake
           # Backward compatibility for capistrano
           args = handle_options
         end
+        load_debug_at_stop_feature
         collect_command_line_tasks(args)
       end
     end
+
+    def load_debug_at_stop_feature
+      return unless ENV["RAKE_DEBUG"]
+      require "debug/session"
+      DEBUGGER__::start no_sigint_hook: true, nonstop: true
+      Rake::Task.prepend Module.new {
+        def execute(*)
+          exception = DEBUGGER__::SESSION.capture_exception_frames(/(exe|bin|lib)\/rake/) do
+            super
+          end
+
+          if exception
+            STDERR.puts exception.message
+            DEBUGGER__::SESSION.enter_postmortem_session exception
+            raise exception
+          end
+        end
+      }
+    rescue LoadError
+    end
+    private :load_debug_at_stop_feature
 
     # Find the rakefile and then load it and any pending imports.
     def load_rakefile
@@ -124,7 +146,7 @@ module Rake
 
       yield
 
-      thread_pool.join
+      thread_pool.join if defined?(@thread_pool)
       if options.job_stats
         stats = thread_pool.statistics
         puts "Maximum active threads: #{stats[:max_active_threads]} + main"
@@ -237,6 +259,8 @@ module Rake
     def display_exception_message_details(ex) # :nodoc:
       if ex.instance_of?(RuntimeError)
         trace ex.message
+      elsif ex.respond_to?(:detailed_message)
+        trace "#{ex.class.name}: #{ex.detailed_message(highlight: false)}"
       else
         trace "#{ex.class.name}: #{ex.message}"
       end
@@ -575,7 +599,7 @@ module Rake
           ["--tasks", "-T [PATTERN]",
             "Display the tasks (matching optional PATTERN) " +
             "with descriptions, then exit. " +
-            "-AT combination displays all of tasks contained no description.",
+            "-AT combination displays all the tasks, including those without descriptions.",
             lambda { |value|
               select_tasks_to_show(options, :tasks, value)
             }
