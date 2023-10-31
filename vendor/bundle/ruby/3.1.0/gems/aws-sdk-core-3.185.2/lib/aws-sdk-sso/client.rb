@@ -34,12 +34,12 @@ require 'aws-sdk-core/plugins/recursion_detection.rb'
 require 'aws-sdk-core/plugins/sign.rb'
 require 'aws-sdk-core/plugins/protocols/rest_json.rb'
 
-Aws::Plugins::GlobalConfiguration.add_identifier(:ssooidc)
+Aws::Plugins::GlobalConfiguration.add_identifier(:sso)
 
-module Aws::SSOOIDC
-  # An API client for SSOOIDC.  To construct a client, you need to configure a `:region` and `:credentials`.
+module Aws::SSO
+  # An API client for SSO.  To construct a client, you need to configure a `:region` and `:credentials`.
   #
-  #     client = Aws::SSOOIDC::Client.new(
+  #     client = Aws::SSO::Client.new(
   #       region: region_name,
   #       credentials: credentials,
   #       # ...
@@ -53,7 +53,7 @@ module Aws::SSOOIDC
 
     include Aws::ClientStubs
 
-    @identifier = :ssooidc
+    @identifier = :sso
 
     set_api(ClientApi::API)
 
@@ -83,7 +83,7 @@ module Aws::SSOOIDC
     add_plugin(Aws::Plugins::RecursionDetection)
     add_plugin(Aws::Plugins::Sign)
     add_plugin(Aws::Plugins::Protocols::RestJson)
-    add_plugin(Aws::SSOOIDC::Plugins::Endpoints)
+    add_plugin(Aws::SSO::Plugins::Endpoints)
 
     # @overload initialize(options)
     #   @param [Hash] options
@@ -334,8 +334,8 @@ module Aws::SSOOIDC
     #     When `true`, request parameters are validated before
     #     sending the request.
     #
-    #   @option options [Aws::SSOOIDC::EndpointProvider] :endpoint_provider
-    #     The endpoint provider used to resolve endpoints. Any object that responds to `#resolve_endpoint(parameters)` where `parameters` is a Struct similar to `Aws::SSOOIDC::EndpointParameters`
+    #   @option options [Aws::SSO::EndpointProvider] :endpoint_provider
+    #     The endpoint provider used to resolve endpoints. Any object that responds to `#resolve_endpoint(parameters)` where `parameters` is a Struct similar to `Aws::SSO::EndpointParameters`
     #
     #   @option options [URI::HTTP,String] :http_proxy A proxy to send
     #     requests through.  Formatted like 'http://proxy.com:123'.
@@ -388,203 +388,207 @@ module Aws::SSOOIDC
 
     # @!group API Operations
 
-    # Creates and returns an access token for the authorized client. The
-    # access token issued will be used to fetch short-term credentials for
-    # the assigned roles in the AWS account.
+    # Returns the STS short-term credentials for a given role name that is
+    # assigned to the user.
     #
-    # @option params [required, String] :client_id
-    #   The unique identifier string for each client. This value should come
-    #   from the persisted result of the RegisterClient API.
+    # @option params [required, String] :role_name
+    #   The friendly name of the role that is assigned to the user.
     #
-    # @option params [required, String] :client_secret
-    #   A secret string generated for the client. This value should come from
-    #   the persisted result of the RegisterClient API.
+    # @option params [required, String] :account_id
+    #   The identifier for the AWS account that is assigned to the user.
     #
-    # @option params [required, String] :grant_type
-    #   Supports grant types for the authorization code, refresh token, and
-    #   device code request. For device code requests, specify the following
-    #   value:
-    #
-    #   `urn:ietf:params:oauth:grant-type:device_code `
-    #
-    #   For information about how to obtain the device code, see the
-    #   StartDeviceAuthorization topic.
-    #
-    # @option params [String] :device_code
-    #   Used only when calling this API for the device code grant type. This
-    #   short-term code is used to identify this authentication attempt. This
-    #   should come from an in-memory reference to the result of the
-    #   StartDeviceAuthorization API.
-    #
-    # @option params [String] :code
-    #   The authorization code received from the authorization service. This
-    #   parameter is required to perform an authorization grant request to get
-    #   access to a token.
-    #
-    # @option params [String] :refresh_token
-    #   Currently, `refreshToken` is not yet implemented and is not supported.
-    #   For more information about the features and limitations of the current
-    #   IAM Identity Center OIDC implementation, see *Considerations for Using
-    #   this Guide* in the [IAM Identity Center OIDC API Reference][1].
-    #
-    #   The token used to obtain an access token in the event that the access
-    #   token is invalid or expired.
+    # @option params [required, String] :access_token
+    #   The token issued by the `CreateToken` API call. For more information,
+    #   see [CreateToken][1] in the *IAM Identity Center OIDC API Reference
+    #   Guide*.
     #
     #
     #
-    #   [1]: https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/Welcome.html
+    #   [1]: https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html
     #
-    # @option params [Array<String>] :scope
-    #   The list of scopes that is defined by the client. Upon authorization,
-    #   this list is used to restrict permissions when granting an access
-    #   token.
+    # @return [Types::GetRoleCredentialsResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
     #
-    # @option params [String] :redirect_uri
-    #   The location of the application that will receive the authorization
-    #   code. Users authorize the service to send the request to this
-    #   location.
-    #
-    # @return [Types::CreateTokenResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
-    #
-    #   * {Types::CreateTokenResponse#access_token #access_token} => String
-    #   * {Types::CreateTokenResponse#token_type #token_type} => String
-    #   * {Types::CreateTokenResponse#expires_in #expires_in} => Integer
-    #   * {Types::CreateTokenResponse#refresh_token #refresh_token} => String
-    #   * {Types::CreateTokenResponse#id_token #id_token} => String
+    #   * {Types::GetRoleCredentialsResponse#role_credentials #role_credentials} => Types::RoleCredentials
     #
     # @example Request syntax with placeholder values
     #
-    #   resp = client.create_token({
-    #     client_id: "ClientId", # required
-    #     client_secret: "ClientSecret", # required
-    #     grant_type: "GrantType", # required
-    #     device_code: "DeviceCode",
-    #     code: "AuthCode",
-    #     refresh_token: "RefreshToken",
-    #     scope: ["Scope"],
-    #     redirect_uri: "URI",
+    #   resp = client.get_role_credentials({
+    #     role_name: "RoleNameType", # required
+    #     account_id: "AccountIdType", # required
+    #     access_token: "AccessTokenType", # required
     #   })
     #
     # @example Response structure
     #
-    #   resp.access_token #=> String
-    #   resp.token_type #=> String
-    #   resp.expires_in #=> Integer
-    #   resp.refresh_token #=> String
-    #   resp.id_token #=> String
+    #   resp.role_credentials.access_key_id #=> String
+    #   resp.role_credentials.secret_access_key #=> String
+    #   resp.role_credentials.session_token #=> String
+    #   resp.role_credentials.expiration #=> Integer
     #
-    # @see http://docs.aws.amazon.com/goto/WebAPI/sso-oidc-2019-06-10/CreateToken AWS API Documentation
+    # @see http://docs.aws.amazon.com/goto/WebAPI/sso-2019-06-10/GetRoleCredentials AWS API Documentation
     #
-    # @overload create_token(params = {})
+    # @overload get_role_credentials(params = {})
     # @param [Hash] params ({})
-    def create_token(params = {}, options = {})
-      req = build_request(:create_token, params)
+    def get_role_credentials(params = {}, options = {})
+      req = build_request(:get_role_credentials, params)
       req.send_request(options)
     end
 
-    # Registers a client with IAM Identity Center. This allows clients to
-    # initiate device authorization. The output should be persisted for
-    # reuse through many authentication requests.
+    # Lists all roles that are assigned to the user for a given AWS account.
     #
-    # @option params [required, String] :client_name
-    #   The friendly name of the client.
+    # @option params [String] :next_token
+    #   The page token from the previous response output when you request
+    #   subsequent pages.
     #
-    # @option params [required, String] :client_type
-    #   The type of client. The service supports only `public` as a client
-    #   type. Anything other than public will be rejected by the service.
+    # @option params [Integer] :max_results
+    #   The number of items that clients can request per page.
     #
-    # @option params [Array<String>] :scopes
-    #   The list of scopes that are defined by the client. Upon authorization,
-    #   this list is used to restrict permissions when granting an access
-    #   token.
+    # @option params [required, String] :access_token
+    #   The token issued by the `CreateToken` API call. For more information,
+    #   see [CreateToken][1] in the *IAM Identity Center OIDC API Reference
+    #   Guide*.
     #
-    # @return [Types::RegisterClientResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
     #
-    #   * {Types::RegisterClientResponse#client_id #client_id} => String
-    #   * {Types::RegisterClientResponse#client_secret #client_secret} => String
-    #   * {Types::RegisterClientResponse#client_id_issued_at #client_id_issued_at} => Integer
-    #   * {Types::RegisterClientResponse#client_secret_expires_at #client_secret_expires_at} => Integer
-    #   * {Types::RegisterClientResponse#authorization_endpoint #authorization_endpoint} => String
-    #   * {Types::RegisterClientResponse#token_endpoint #token_endpoint} => String
+    #
+    #   [1]: https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html
+    #
+    # @option params [required, String] :account_id
+    #   The identifier for the AWS account that is assigned to the user.
+    #
+    # @return [Types::ListAccountRolesResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
+    #
+    #   * {Types::ListAccountRolesResponse#next_token #next_token} => String
+    #   * {Types::ListAccountRolesResponse#role_list #role_list} => Array&lt;Types::RoleInfo&gt;
+    #
+    # The returned {Seahorse::Client::Response response} is a pageable response and is Enumerable. For details on usage see {Aws::PageableResponse PageableResponse}.
     #
     # @example Request syntax with placeholder values
     #
-    #   resp = client.register_client({
-    #     client_name: "ClientName", # required
-    #     client_type: "ClientType", # required
-    #     scopes: ["Scope"],
+    #   resp = client.list_account_roles({
+    #     next_token: "NextTokenType",
+    #     max_results: 1,
+    #     access_token: "AccessTokenType", # required
+    #     account_id: "AccountIdType", # required
     #   })
     #
     # @example Response structure
     #
-    #   resp.client_id #=> String
-    #   resp.client_secret #=> String
-    #   resp.client_id_issued_at #=> Integer
-    #   resp.client_secret_expires_at #=> Integer
-    #   resp.authorization_endpoint #=> String
-    #   resp.token_endpoint #=> String
+    #   resp.next_token #=> String
+    #   resp.role_list #=> Array
+    #   resp.role_list[0].role_name #=> String
+    #   resp.role_list[0].account_id #=> String
     #
-    # @see http://docs.aws.amazon.com/goto/WebAPI/sso-oidc-2019-06-10/RegisterClient AWS API Documentation
+    # @see http://docs.aws.amazon.com/goto/WebAPI/sso-2019-06-10/ListAccountRoles AWS API Documentation
     #
-    # @overload register_client(params = {})
+    # @overload list_account_roles(params = {})
     # @param [Hash] params ({})
-    def register_client(params = {}, options = {})
-      req = build_request(:register_client, params)
+    def list_account_roles(params = {}, options = {})
+      req = build_request(:list_account_roles, params)
       req.send_request(options)
     end
 
-    # Initiates device authorization by requesting a pair of verification
-    # codes from the authorization service.
-    #
-    # @option params [required, String] :client_id
-    #   The unique identifier string for the client that is registered with
-    #   IAM Identity Center. This value should come from the persisted result
-    #   of the RegisterClient API operation.
-    #
-    # @option params [required, String] :client_secret
-    #   A secret string that is generated for the client. This value should
-    #   come from the persisted result of the RegisterClient API operation.
-    #
-    # @option params [required, String] :start_url
-    #   The URL for the AWS access portal. For more information, see [Using
-    #   the AWS access portal][1] in the *IAM Identity Center User Guide*.
+    # Lists all AWS accounts assigned to the user. These AWS accounts are
+    # assigned by the administrator of the account. For more information,
+    # see [Assign User Access][1] in the *IAM Identity Center User Guide*.
+    # This operation returns a paginated response.
     #
     #
     #
-    #   [1]: https://docs.aws.amazon.com/singlesignon/latest/userguide/using-the-portal.html
+    # [1]: https://docs.aws.amazon.com/singlesignon/latest/userguide/useraccess.html#assignusers
     #
-    # @return [Types::StartDeviceAuthorizationResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
+    # @option params [String] :next_token
+    #   (Optional) When requesting subsequent pages, this is the page token
+    #   from the previous response output.
     #
-    #   * {Types::StartDeviceAuthorizationResponse#device_code #device_code} => String
-    #   * {Types::StartDeviceAuthorizationResponse#user_code #user_code} => String
-    #   * {Types::StartDeviceAuthorizationResponse#verification_uri #verification_uri} => String
-    #   * {Types::StartDeviceAuthorizationResponse#verification_uri_complete #verification_uri_complete} => String
-    #   * {Types::StartDeviceAuthorizationResponse#expires_in #expires_in} => Integer
-    #   * {Types::StartDeviceAuthorizationResponse#interval #interval} => Integer
+    # @option params [Integer] :max_results
+    #   This is the number of items clients can request per page.
+    #
+    # @option params [required, String] :access_token
+    #   The token issued by the `CreateToken` API call. For more information,
+    #   see [CreateToken][1] in the *IAM Identity Center OIDC API Reference
+    #   Guide*.
+    #
+    #
+    #
+    #   [1]: https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html
+    #
+    # @return [Types::ListAccountsResponse] Returns a {Seahorse::Client::Response response} object which responds to the following methods:
+    #
+    #   * {Types::ListAccountsResponse#next_token #next_token} => String
+    #   * {Types::ListAccountsResponse#account_list #account_list} => Array&lt;Types::AccountInfo&gt;
+    #
+    # The returned {Seahorse::Client::Response response} is a pageable response and is Enumerable. For details on usage see {Aws::PageableResponse PageableResponse}.
     #
     # @example Request syntax with placeholder values
     #
-    #   resp = client.start_device_authorization({
-    #     client_id: "ClientId", # required
-    #     client_secret: "ClientSecret", # required
-    #     start_url: "URI", # required
+    #   resp = client.list_accounts({
+    #     next_token: "NextTokenType",
+    #     max_results: 1,
+    #     access_token: "AccessTokenType", # required
     #   })
     #
     # @example Response structure
     #
-    #   resp.device_code #=> String
-    #   resp.user_code #=> String
-    #   resp.verification_uri #=> String
-    #   resp.verification_uri_complete #=> String
-    #   resp.expires_in #=> Integer
-    #   resp.interval #=> Integer
+    #   resp.next_token #=> String
+    #   resp.account_list #=> Array
+    #   resp.account_list[0].account_id #=> String
+    #   resp.account_list[0].account_name #=> String
+    #   resp.account_list[0].email_address #=> String
     #
-    # @see http://docs.aws.amazon.com/goto/WebAPI/sso-oidc-2019-06-10/StartDeviceAuthorization AWS API Documentation
+    # @see http://docs.aws.amazon.com/goto/WebAPI/sso-2019-06-10/ListAccounts AWS API Documentation
     #
-    # @overload start_device_authorization(params = {})
+    # @overload list_accounts(params = {})
     # @param [Hash] params ({})
-    def start_device_authorization(params = {}, options = {})
-      req = build_request(:start_device_authorization, params)
+    def list_accounts(params = {}, options = {})
+      req = build_request(:list_accounts, params)
+      req.send_request(options)
+    end
+
+    # Removes the locally stored SSO tokens from the client-side cache and
+    # sends an API call to the IAM Identity Center service to invalidate the
+    # corresponding server-side IAM Identity Center sign in session.
+    #
+    # <note markdown="1"> If a user uses IAM Identity Center to access the AWS CLI, the user’s
+    # IAM Identity Center sign in session is used to obtain an IAM session,
+    # as specified in the corresponding IAM Identity Center permission set.
+    # More specifically, IAM Identity Center assumes an IAM role in the
+    # target account on behalf of the user, and the corresponding temporary
+    # AWS credentials are returned to the client.
+    #
+    #  After user logout, any existing IAM role sessions that were created by
+    # using IAM Identity Center permission sets continue based on the
+    # duration configured in the permission set. For more information, see
+    # [User authentications][1] in the *IAM Identity Center User Guide*.
+    #
+    #  </note>
+    #
+    #
+    #
+    # [1]: https://docs.aws.amazon.com/singlesignon/latest/userguide/authconcept.html
+    #
+    # @option params [required, String] :access_token
+    #   The token issued by the `CreateToken` API call. For more information,
+    #   see [CreateToken][1] in the *IAM Identity Center OIDC API Reference
+    #   Guide*.
+    #
+    #
+    #
+    #   [1]: https://docs.aws.amazon.com/singlesignon/latest/OIDCAPIReference/API_CreateToken.html
+    #
+    # @return [Struct] Returns an empty {Seahorse::Client::Response response}.
+    #
+    # @example Request syntax with placeholder values
+    #
+    #   resp = client.logout({
+    #     access_token: "AccessTokenType", # required
+    #   })
+    #
+    # @see http://docs.aws.amazon.com/goto/WebAPI/sso-2019-06-10/Logout AWS API Documentation
+    #
+    # @overload logout(params = {})
+    # @param [Hash] params ({})
+    def logout(params = {}, options = {})
+      req = build_request(:logout, params)
       req.send_request(options)
     end
 
@@ -601,7 +605,7 @@ module Aws::SSOOIDC
         params: params,
         config: config)
       context[:gem_name] = 'aws-sdk-core'
-      context[:gem_version] = '3.185.1'
+      context[:gem_version] = '3.185.2'
       Seahorse::Client::Request.new(handlers, context)
     end
 
