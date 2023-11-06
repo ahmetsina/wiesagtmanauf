@@ -137,6 +137,11 @@ module Google
         # @return [String]
         attr_accessor :name
       
+        # The bucket's object retention config.
+        # Corresponds to the JSON property `objectRetention`
+        # @return [Google::Apis::StorageV1::Bucket::ObjectRetention]
+        attr_accessor :object_retention
+      
         # The owner of the bucket. This is always the project team's owner group.
         # Corresponds to the JSON property `owner`
         # @return [Google::Apis::StorageV1::Bucket::Owner]
@@ -176,6 +181,12 @@ module Google
         # Corresponds to the JSON property `selfLink`
         # @return [String]
         attr_accessor :self_link
+      
+        # The bucket's soft delete policy, which defines the period of time that soft-
+        # deleted objects will be retained, and cannot be permanently deleted.
+        # Corresponds to the JSON property `softDeletePolicy`
+        # @return [Google::Apis::StorageV1::Bucket::SoftDeletePolicy]
+        attr_accessor :soft_delete_policy
       
         # The bucket's default storage class, used whenever no storageClass is specified
         # for a newly-created object. This defines how objects in the bucket are stored
@@ -235,12 +246,14 @@ module Google
           @logging = args[:logging] if args.key?(:logging)
           @metageneration = args[:metageneration] if args.key?(:metageneration)
           @name = args[:name] if args.key?(:name)
+          @object_retention = args[:object_retention] if args.key?(:object_retention)
           @owner = args[:owner] if args.key?(:owner)
           @project_number = args[:project_number] if args.key?(:project_number)
           @retention_policy = args[:retention_policy] if args.key?(:retention_policy)
           @rpo = args[:rpo] if args.key?(:rpo)
           @satisfies_pzs = args[:satisfies_pzs] if args.key?(:satisfies_pzs)
           @self_link = args[:self_link] if args.key?(:self_link)
+          @soft_delete_policy = args[:soft_delete_policy] if args.key?(:soft_delete_policy)
           @storage_class = args[:storage_class] if args.key?(:storage_class)
           @time_created = args[:time_created] if args.key?(:time_created)
           @updated = args[:updated] if args.key?(:updated)
@@ -258,6 +271,19 @@ module Google
           attr_accessor :enabled
           alias_method :enabled?, :enabled
         
+          # The storage class that objects in the bucket eventually transition to if they
+          # are not read for a certain length of time. Valid values are NEARLINE and
+          # ARCHIVE.
+          # Corresponds to the JSON property `terminalStorageClass`
+          # @return [String]
+          attr_accessor :terminal_storage_class
+        
+          # A date and time in RFC 3339 format representing the time of the most recent
+          # update to "terminalStorageClass".
+          # Corresponds to the JSON property `terminalStorageClassUpdateTime`
+          # @return [DateTime]
+          attr_accessor :terminal_storage_class_update_time
+        
           # A date and time in RFC 3339 format representing the instant at which "enabled"
           # was last toggled.
           # Corresponds to the JSON property `toggleTime`
@@ -271,6 +297,8 @@ module Google
           # Update properties of this object
           def update!(**args)
             @enabled = args[:enabled] if args.key?(:enabled)
+            @terminal_storage_class = args[:terminal_storage_class] if args.key?(:terminal_storage_class)
+            @terminal_storage_class_update_time = args[:terminal_storage_class_update_time] if args.key?(:terminal_storage_class_update_time)
             @toggle_time = args[:toggle_time] if args.key?(:toggle_time)
           end
         end
@@ -682,6 +710,25 @@ module Google
           end
         end
         
+        # The bucket's object retention config.
+        class ObjectRetention
+          include Google::Apis::Core::Hashable
+        
+          # The bucket's object retention mode. Can be Enabled.
+          # Corresponds to the JSON property `mode`
+          # @return [String]
+          attr_accessor :mode
+        
+          def initialize(**args)
+             update!(**args)
+          end
+        
+          # Update properties of this object
+          def update!(**args)
+            @mode = args[:mode] if args.key?(:mode)
+          end
+        end
+        
         # The owner of the bucket. This is always the project team's owner group.
         class Owner
           include Google::Apis::Core::Hashable
@@ -748,6 +795,34 @@ module Google
             @effective_time = args[:effective_time] if args.key?(:effective_time)
             @is_locked = args[:is_locked] if args.key?(:is_locked)
             @retention_period = args[:retention_period] if args.key?(:retention_period)
+          end
+        end
+        
+        # The bucket's soft delete policy, which defines the period of time that soft-
+        # deleted objects will be retained, and cannot be permanently deleted.
+        class SoftDeletePolicy
+          include Google::Apis::Core::Hashable
+        
+          # Server-determined value that indicates the time from which the policy, or one
+          # with a greater retention, was effective. This value is in RFC 3339 format.
+          # Corresponds to the JSON property `effectiveTime`
+          # @return [DateTime]
+          attr_accessor :effective_time
+        
+          # The period of time in seconds, that soft-deleted objects in the bucket will be
+          # retained and cannot be permanently deleted.
+          # Corresponds to the JSON property `retentionDurationSeconds`
+          # @return [Fixnum]
+          attr_accessor :retention_duration_seconds
+        
+          def initialize(**args)
+             update!(**args)
+          end
+        
+          # Update properties of this object
+          def update!(**args)
+            @effective_time = args[:effective_time] if args.key?(:effective_time)
+            @retention_duration_seconds = args[:retention_duration_seconds] if args.key?(:retention_duration_seconds)
           end
         end
         
@@ -979,6 +1054,59 @@ module Google
         end
       end
       
+      # A bulk restore objects request.
+      class BulkRestoreObjectsRequest
+        include Google::Apis::Core::Hashable
+      
+        # If false (default), the restore will not overwrite live objects with the same
+        # name at the destination. This means some deleted objects may be skipped. If
+        # true, live objects will be overwritten resulting in a noncurrent object (if
+        # versioning is enabled). If versioning is not enabled, overwriting the object
+        # will result in a soft-deleted object. In either case, if a noncurrent object
+        # already exists with the same name, a live version can be written without issue.
+        # Corresponds to the JSON property `allowOverwrite`
+        # @return [Boolean]
+        attr_accessor :allow_overwrite
+        alias_method :allow_overwrite?, :allow_overwrite
+      
+        # If true, copies the source object's ACL; otherwise, uses the bucket's default
+        # object ACL. The default is false.
+        # Corresponds to the JSON property `copySourceAcl`
+        # @return [Boolean]
+        attr_accessor :copy_source_acl
+        alias_method :copy_source_acl?, :copy_source_acl
+      
+        # Restores only the objects matching any of the specified glob(s). If this
+        # parameter is not specified, all objects will be restored within the specified
+        # time range.
+        # Corresponds to the JSON property `matchGlobs`
+        # @return [Array<String>]
+        attr_accessor :match_globs
+      
+        # Restores only the objects that were soft-deleted after this time.
+        # Corresponds to the JSON property `softDeletedAfterTime`
+        # @return [DateTime]
+        attr_accessor :soft_deleted_after_time
+      
+        # Restores only the objects that were soft-deleted before this time.
+        # Corresponds to the JSON property `softDeletedBeforeTime`
+        # @return [DateTime]
+        attr_accessor :soft_deleted_before_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @allow_overwrite = args[:allow_overwrite] if args.key?(:allow_overwrite)
+          @copy_source_acl = args[:copy_source_acl] if args.key?(:copy_source_acl)
+          @match_globs = args[:match_globs] if args.key?(:match_globs)
+          @soft_deleted_after_time = args[:soft_deleted_after_time] if args.key?(:soft_deleted_after_time)
+          @soft_deleted_before_time = args[:soft_deleted_before_time] if args.key?(:soft_deleted_before_time)
+        end
+      end
+      
       # An notification channel used to watch for resource changes.
       class Channel
         include Google::Apis::Core::Hashable
@@ -1184,6 +1312,131 @@ module Google
         end
       end
       
+      # The response message for storage.buckets.operations.list.
+      class GoogleLongrunningListOperationsResponse
+        include Google::Apis::Core::Hashable
+      
+        # The continuation token, used to page through large result sets. Provide this
+        # value in a subsequent request to return the next page of results.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        # A list of operations that matches the specified filter in the request.
+        # Corresponds to the JSON property `operations`
+        # @return [Array<Google::Apis::StorageV1::GoogleLongrunningOperation>]
+        attr_accessor :operations
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+          @operations = args[:operations] if args.key?(:operations)
+        end
+      end
+      
+      # This resource represents a long-running operation that is the result of a
+      # network API call.
+      class GoogleLongrunningOperation
+        include Google::Apis::Core::Hashable
+      
+        # If the value is "false", it means the operation is still in progress. If "true"
+        # , the operation is completed, and either "error" or "response" is available.
+        # Corresponds to the JSON property `done`
+        # @return [Boolean]
+        attr_accessor :done
+        alias_method :done?, :done
+      
+        # The "Status" type defines a logical error model that is suitable for different
+        # programming environments, including REST APIs and RPC APIs. It is used by [
+        # gRPC](https://github.com/grpc). Each "Status" message contains three pieces of
+        # data: error code, error message, and error details. You can find out more
+        # about this error model and how to work with it in the [API Design Guide](https:
+        # //cloud.google.com/apis/design/errors).
+        # Corresponds to the JSON property `error`
+        # @return [Google::Apis::StorageV1::GoogleRpcStatus]
+        attr_accessor :error
+      
+        # Service-specific metadata associated with the operation. It typically contains
+        # progress information and common metadata such as create time. Some services
+        # might not provide such metadata. Any method that returns a long-running
+        # operation should document the metadata type, if any.
+        # Corresponds to the JSON property `metadata`
+        # @return [Hash<String,Object>]
+        attr_accessor :metadata
+      
+        # The server-assigned name, which is only unique within the same service that
+        # originally returns it. If you use the default HTTP mapping, the "name" should
+        # be a resource name ending with "operations/`operationId`".
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # The normal response of the operation in case of success. If the original
+        # method returns no data on success, such as "Delete", the response is google.
+        # protobuf.Empty. If the original method is standard Get/Create/Update, the
+        # response should be the resource. For other methods, the response should have
+        # the type "XxxResponse", where "Xxx" is the original method name. For example,
+        # if the original method name is "TakeSnapshot()", the inferred response type is
+        # "TakeSnapshotResponse".
+        # Corresponds to the JSON property `response`
+        # @return [Hash<String,Object>]
+        attr_accessor :response
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @done = args[:done] if args.key?(:done)
+          @error = args[:error] if args.key?(:error)
+          @metadata = args[:metadata] if args.key?(:metadata)
+          @name = args[:name] if args.key?(:name)
+          @response = args[:response] if args.key?(:response)
+        end
+      end
+      
+      # The "Status" type defines a logical error model that is suitable for different
+      # programming environments, including REST APIs and RPC APIs. It is used by [
+      # gRPC](https://github.com/grpc). Each "Status" message contains three pieces of
+      # data: error code, error message, and error details. You can find out more
+      # about this error model and how to work with it in the [API Design Guide](https:
+      # //cloud.google.com/apis/design/errors).
+      class GoogleRpcStatus
+        include Google::Apis::Core::Hashable
+      
+        # The status code, which should be an enum value of google.rpc.Code.
+        # Corresponds to the JSON property `code`
+        # @return [Fixnum]
+        attr_accessor :code
+      
+        # A list of messages that carry the error details. There is a common set of
+        # message types for APIs to use.
+        # Corresponds to the JSON property `details`
+        # @return [Array<Hash<String,Object>>]
+        attr_accessor :details
+      
+        # A developer-facing error message, which should be in English.
+        # Corresponds to the JSON property `message`
+        # @return [String]
+        attr_accessor :message
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @code = args[:code] if args.key?(:code)
+          @details = args[:details] if args.key?(:details)
+          @message = args[:message] if args.key?(:message)
+        end
+      end
+      
       # JSON template to produce a JSON-style HMAC Key resource for Create responses.
       class HmacKey
         include Google::Apis::Core::Hashable
@@ -1300,6 +1553,103 @@ module Google
       
         # The kind of item this is. For lists of hmacKeys, this is always storage#
         # hmacKeysMetadata.
+        # Corresponds to the JSON property `kind`
+        # @return [String]
+        attr_accessor :kind
+      
+        # The continuation token, used to page through large result sets. Provide this
+        # value in a subsequent request to return the next page of results.
+        # Corresponds to the JSON property `nextPageToken`
+        # @return [String]
+        attr_accessor :next_page_token
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @items = args[:items] if args.key?(:items)
+          @kind = args[:kind] if args.key?(:kind)
+          @next_page_token = args[:next_page_token] if args.key?(:next_page_token)
+        end
+      end
+      
+      # A managed folder.
+      class ManagedFolder
+        include Google::Apis::Core::Hashable
+      
+        # The name of the bucket containing this managed folder.
+        # Corresponds to the JSON property `bucket`
+        # @return [String]
+        attr_accessor :bucket
+      
+        # The creation time of the managed folder in RFC 3339 format.
+        # Corresponds to the JSON property `createTime`
+        # @return [DateTime]
+        attr_accessor :create_time
+      
+        # The ID of the managed folder, including the bucket name and managed folder
+        # name.
+        # Corresponds to the JSON property `id`
+        # @return [String]
+        attr_accessor :id
+      
+        # The kind of item this is. For managed folders, this is always storage#
+        # managedFolder.
+        # Corresponds to the JSON property `kind`
+        # @return [String]
+        attr_accessor :kind
+      
+        # The version of the metadata for this managed folder. Used for preconditions
+        # and for detecting changes in metadata.
+        # Corresponds to the JSON property `metageneration`
+        # @return [Fixnum]
+        attr_accessor :metageneration
+      
+        # The name of the managed folder. Required if not specified by URL parameter.
+        # Corresponds to the JSON property `name`
+        # @return [String]
+        attr_accessor :name
+      
+        # The link to this managed folder.
+        # Corresponds to the JSON property `selfLink`
+        # @return [String]
+        attr_accessor :self_link
+      
+        # The last update time of the managed folder metadata in RFC 3339 format.
+        # Corresponds to the JSON property `updateTime`
+        # @return [DateTime]
+        attr_accessor :update_time
+      
+        def initialize(**args)
+           update!(**args)
+        end
+      
+        # Update properties of this object
+        def update!(**args)
+          @bucket = args[:bucket] if args.key?(:bucket)
+          @create_time = args[:create_time] if args.key?(:create_time)
+          @id = args[:id] if args.key?(:id)
+          @kind = args[:kind] if args.key?(:kind)
+          @metageneration = args[:metageneration] if args.key?(:metageneration)
+          @name = args[:name] if args.key?(:name)
+          @self_link = args[:self_link] if args.key?(:self_link)
+          @update_time = args[:update_time] if args.key?(:update_time)
+        end
+      end
+      
+      # A list of managed folders.
+      class ManagedFolders
+        include Google::Apis::Core::Hashable
+      
+        # The list of items.
+        # Corresponds to the JSON property `items`
+        # @return [Array<Google::Apis::StorageV1::ManagedFolder>]
+        attr_accessor :items
+      
+        # The kind of item this is. For lists of managed folders, this is always storage#
+        # managedFolders.
         # Corresponds to the JSON property `kind`
         # @return [String]
         attr_accessor :kind
@@ -1511,6 +1861,13 @@ module Google
         # @return [Fixnum]
         attr_accessor :generation
       
+        # This is the time (in the future) when the soft-deleted object will no longer
+        # be restorable. It is equal to the soft delete time plus the current soft
+        # delete retention duration of the bucket.
+        # Corresponds to the JSON property `hardDeleteTime`
+        # @return [DateTime]
+        attr_accessor :hard_delete_time
+      
         # The ID of the object, including the bucket name, object name, and generation
         # number.
         # Corresponds to the JSON property `id`
@@ -1562,6 +1919,11 @@ module Google
         # @return [Google::Apis::StorageV1::Object::Owner]
         attr_accessor :owner
       
+        # A collection of object level retention parameters.
+        # Corresponds to the JSON property `retention`
+        # @return [Google::Apis::StorageV1::Object::Retention]
+        attr_accessor :retention
+      
         # A server-determined value that specifies the earliest time that the object's
         # retention period expires. This value is in RFC 3339 format. Note 1: This field
         # is not provided for objects with an active event-based hold, since retention
@@ -1581,6 +1943,11 @@ module Google
         # Corresponds to the JSON property `size`
         # @return [Fixnum]
         attr_accessor :size
+      
+        # The time at which the object became soft-deleted in RFC 3339 format.
+        # Corresponds to the JSON property `softDeleteTime`
+        # @return [DateTime]
+        attr_accessor :soft_delete_time
       
         # Storage class of the object.
         # Corresponds to the JSON property `storageClass`
@@ -1602,8 +1969,8 @@ module Google
         # @return [DateTime]
         attr_accessor :time_created
       
-        # The deletion time of the object in RFC 3339 format. Will be returned if and
-        # only if this version of the object has been deleted.
+        # The time at which the object became noncurrent in RFC 3339 format. Will be
+        # returned if and only if this version of the object has been deleted.
         # Corresponds to the JSON property `timeDeleted`
         # @return [DateTime]
         attr_accessor :time_deleted
@@ -1643,6 +2010,7 @@ module Google
           @etag = args[:etag] if args.key?(:etag)
           @event_based_hold = args[:event_based_hold] if args.key?(:event_based_hold)
           @generation = args[:generation] if args.key?(:generation)
+          @hard_delete_time = args[:hard_delete_time] if args.key?(:hard_delete_time)
           @id = args[:id] if args.key?(:id)
           @kind = args[:kind] if args.key?(:kind)
           @kms_key_name = args[:kms_key_name] if args.key?(:kms_key_name)
@@ -1652,9 +2020,11 @@ module Google
           @metageneration = args[:metageneration] if args.key?(:metageneration)
           @name = args[:name] if args.key?(:name)
           @owner = args[:owner] if args.key?(:owner)
+          @retention = args[:retention] if args.key?(:retention)
           @retention_expiration_time = args[:retention_expiration_time] if args.key?(:retention_expiration_time)
           @self_link = args[:self_link] if args.key?(:self_link)
           @size = args[:size] if args.key?(:size)
+          @soft_delete_time = args[:soft_delete_time] if args.key?(:soft_delete_time)
           @storage_class = args[:storage_class] if args.key?(:storage_class)
           @temporary_hold = args[:temporary_hold] if args.key?(:temporary_hold)
           @time_created = args[:time_created] if args.key?(:time_created)
@@ -1711,6 +2081,31 @@ module Google
           def update!(**args)
             @entity = args[:entity] if args.key?(:entity)
             @entity_id = args[:entity_id] if args.key?(:entity_id)
+          end
+        end
+        
+        # A collection of object level retention parameters.
+        class Retention
+          include Google::Apis::Core::Hashable
+        
+          # The bucket's object retention mode, can only be Unlocked or Locked.
+          # Corresponds to the JSON property `mode`
+          # @return [String]
+          attr_accessor :mode
+        
+          # A time in RFC 3339 format until which object retention protects this object.
+          # Corresponds to the JSON property `retainUntilTime`
+          # @return [DateTime]
+          attr_accessor :retain_until_time
+        
+          def initialize(**args)
+             update!(**args)
+          end
+        
+          # Update properties of this object
+          def update!(**args)
+            @mode = args[:mode] if args.key?(:mode)
+            @retain_until_time = args[:retain_until_time] if args.key?(:retain_until_time)
           end
         end
       end
@@ -1909,7 +2304,7 @@ module Google
         end
       end
       
-      # A bucket/object IAM policy.
+      # A bucket/object/managedFolder IAM policy.
       class Policy
         include Google::Apis::Core::Hashable
       
@@ -1932,11 +2327,11 @@ module Google
         attr_accessor :kind
       
         # The ID of the resource to which this policy belongs. Will be of the form
-        # projects/_/buckets/bucket for buckets, and projects/_/buckets/bucket/objects/
-        # object for objects. A specific generation may be specified by appending #
-        # generationNumber to the end of the object name, e.g. projects/_/buckets/my-
-        # bucket/objects/data.txt#17. The current generation can be denoted with #0.
-        # This field is ignored on input.
+        # projects/_/buckets/bucket for buckets, projects/_/buckets/bucket/objects/
+        # object for objects, and projects/_/buckets/bucket/managedFolders/managedFolder.
+        # A specific generation may be specified by appending #generationNumber to the
+        # end of the object name, e.g. projects/_/buckets/my-bucket/objects/data.txt#17.
+        # The current generation can be denoted with #0. This field is ignored on input.
         # Corresponds to the JSON property `resourceId`
         # @return [String]
         attr_accessor :resource_id
@@ -2115,7 +2510,7 @@ module Google
         end
       end
       
-      # A storage.(buckets|objects).testIamPermissions response.
+      # A storage.(buckets|objects|managedFolders).testIamPermissions response.
       class TestIamPermissionsResponse
         include Google::Apis::Core::Hashable
       
@@ -2125,8 +2520,8 @@ module Google
         attr_accessor :kind
       
         # The permissions held by the caller. Permissions are always of the format
-        # storage.resource.capability, where resource is one of buckets or objects. The
-        # supported permissions are as follows:
+        # storage.resource.capability, where resource is one of buckets, objects, or
+        # managedFolders. The supported permissions are as follows:
         # - storage.buckets.delete — Delete bucket.
         # - storage.buckets.get — Read bucket metadata.
         # - storage.buckets.getIamPolicy — Read bucket IAM policy.
@@ -2141,6 +2536,12 @@ module Google
         # - storage.objects.list — List objects.
         # - storage.objects.setIamPolicy — Update object IAM policy.
         # - storage.objects.update — Update object metadata.
+        # - storage.managedFolders.delete — Delete managed folder.
+        # - storage.managedFolders.get — Read managed folder metadata.
+        # - storage.managedFolders.getIamPolicy — Read managed folder IAM policy.
+        # - storage.managedFolders.create — Create managed folder.
+        # - storage.managedFolders.list — List managed folders.
+        # - storage.managedFolders.setIamPolicy — Update managed folder IAM policy.
         # Corresponds to the JSON property `permissions`
         # @return [Array<String>]
         attr_accessor :permissions

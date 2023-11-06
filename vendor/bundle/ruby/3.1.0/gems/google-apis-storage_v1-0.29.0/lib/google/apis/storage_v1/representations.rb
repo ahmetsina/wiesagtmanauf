@@ -103,6 +103,12 @@ module Google
           include Google::Apis::Core::JsonObjectSupport
         end
         
+        class ObjectRetention
+          class Representation < Google::Apis::Core::JsonRepresentation; end
+        
+          include Google::Apis::Core::JsonObjectSupport
+        end
+        
         class Owner
           class Representation < Google::Apis::Core::JsonRepresentation; end
         
@@ -110,6 +116,12 @@ module Google
         end
         
         class RetentionPolicy
+          class Representation < Google::Apis::Core::JsonRepresentation; end
+        
+          include Google::Apis::Core::JsonObjectSupport
+        end
+        
+        class SoftDeletePolicy
           class Representation < Google::Apis::Core::JsonRepresentation; end
         
           include Google::Apis::Core::JsonObjectSupport
@@ -154,6 +166,12 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class BulkRestoreObjectsRequest
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class Channel
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -184,6 +202,24 @@ module Google
         include Google::Apis::Core::JsonObjectSupport
       end
       
+      class GoogleLongrunningListOperationsResponse
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleLongrunningOperation
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class GoogleRpcStatus
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
       class HmacKey
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
@@ -197,6 +233,18 @@ module Google
       end
       
       class HmacKeysMetadata
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ManagedFolder
+        class Representation < Google::Apis::Core::JsonRepresentation; end
+      
+        include Google::Apis::Core::JsonObjectSupport
+      end
+      
+      class ManagedFolders
         class Representation < Google::Apis::Core::JsonRepresentation; end
       
         include Google::Apis::Core::JsonObjectSupport
@@ -224,6 +272,12 @@ module Google
         end
         
         class Owner
+          class Representation < Google::Apis::Core::JsonRepresentation; end
+        
+          include Google::Apis::Core::JsonObjectSupport
+        end
+        
+        class Retention
           class Representation < Google::Apis::Core::JsonRepresentation; end
         
           include Google::Apis::Core::JsonObjectSupport
@@ -318,6 +372,8 @@ module Google
       
           property :metageneration, :numeric_string => true, as: 'metageneration'
           property :name, as: 'name'
+          property :object_retention, as: 'objectRetention', class: Google::Apis::StorageV1::Bucket::ObjectRetention, decorator: Google::Apis::StorageV1::Bucket::ObjectRetention::Representation
+      
           property :owner, as: 'owner', class: Google::Apis::StorageV1::Bucket::Owner, decorator: Google::Apis::StorageV1::Bucket::Owner::Representation
       
           property :project_number, :numeric_string => true, as: 'projectNumber'
@@ -326,6 +382,8 @@ module Google
           property :rpo, as: 'rpo'
           property :satisfies_pzs, as: 'satisfiesPZS'
           property :self_link, as: 'selfLink'
+          property :soft_delete_policy, as: 'softDeletePolicy', class: Google::Apis::StorageV1::Bucket::SoftDeletePolicy, decorator: Google::Apis::StorageV1::Bucket::SoftDeletePolicy::Representation
+      
           property :storage_class, as: 'storageClass'
           property :time_created, as: 'timeCreated', type: DateTime
       
@@ -341,6 +399,9 @@ module Google
           # @private
           class Representation < Google::Apis::Core::JsonRepresentation
             property :enabled, as: 'enabled'
+            property :terminal_storage_class, as: 'terminalStorageClass'
+            property :terminal_storage_class_update_time, as: 'terminalStorageClassUpdateTime', type: DateTime
+        
             property :toggle_time, as: 'toggleTime', type: DateTime
         
           end
@@ -461,6 +522,13 @@ module Google
           end
         end
         
+        class ObjectRetention
+          # @private
+          class Representation < Google::Apis::Core::JsonRepresentation
+            property :mode, as: 'mode'
+          end
+        end
+        
         class Owner
           # @private
           class Representation < Google::Apis::Core::JsonRepresentation
@@ -476,6 +544,15 @@ module Google
         
             property :is_locked, as: 'isLocked'
             property :retention_period, :numeric_string => true, as: 'retentionPeriod'
+          end
+        end
+        
+        class SoftDeletePolicy
+          # @private
+          class Representation < Google::Apis::Core::JsonRepresentation
+            property :effective_time, as: 'effectiveTime', type: DateTime
+        
+            property :retention_duration_seconds, :numeric_string => true, as: 'retentionDurationSeconds'
           end
         end
         
@@ -540,6 +617,19 @@ module Google
         end
       end
       
+      class BulkRestoreObjectsRequest
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :allow_overwrite, as: 'allowOverwrite'
+          property :copy_source_acl, as: 'copySourceAcl'
+          collection :match_globs, as: 'matchGlobs'
+          property :soft_deleted_after_time, as: 'softDeletedAfterTime', type: DateTime
+      
+          property :soft_deleted_before_time, as: 'softDeletedBeforeTime', type: DateTime
+      
+        end
+      end
+      
       class Channel
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -594,6 +684,36 @@ module Google
         end
       end
       
+      class GoogleLongrunningListOperationsResponse
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :next_page_token, as: 'nextPageToken'
+          collection :operations, as: 'operations', class: Google::Apis::StorageV1::GoogleLongrunningOperation, decorator: Google::Apis::StorageV1::GoogleLongrunningOperation::Representation
+      
+        end
+      end
+      
+      class GoogleLongrunningOperation
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :done, as: 'done'
+          property :error, as: 'error', class: Google::Apis::StorageV1::GoogleRpcStatus, decorator: Google::Apis::StorageV1::GoogleRpcStatus::Representation
+      
+          hash :metadata, as: 'metadata'
+          property :name, as: 'name'
+          hash :response, as: 'response'
+        end
+      end
+      
+      class GoogleRpcStatus
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :code, as: 'code'
+          collection :details, as: 'details'
+          property :message, as: 'message'
+        end
+      end
+      
       class HmacKey
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
@@ -626,6 +746,32 @@ module Google
         # @private
         class Representation < Google::Apis::Core::JsonRepresentation
           collection :items, as: 'items', class: Google::Apis::StorageV1::HmacKeyMetadata, decorator: Google::Apis::StorageV1::HmacKeyMetadata::Representation
+      
+          property :kind, as: 'kind'
+          property :next_page_token, as: 'nextPageToken'
+        end
+      end
+      
+      class ManagedFolder
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          property :bucket, as: 'bucket'
+          property :create_time, as: 'createTime', type: DateTime
+      
+          property :id, as: 'id'
+          property :kind, as: 'kind'
+          property :metageneration, :numeric_string => true, as: 'metageneration'
+          property :name, as: 'name'
+          property :self_link, as: 'selfLink'
+          property :update_time, as: 'updateTime', type: DateTime
+      
+        end
+      end
+      
+      class ManagedFolders
+        # @private
+        class Representation < Google::Apis::Core::JsonRepresentation
+          collection :items, as: 'items', class: Google::Apis::StorageV1::ManagedFolder, decorator: Google::Apis::StorageV1::ManagedFolder::Representation
       
           property :kind, as: 'kind'
           property :next_page_token, as: 'nextPageToken'
@@ -676,6 +822,8 @@ module Google
           property :etag, as: 'etag'
           property :event_based_hold, as: 'eventBasedHold'
           property :generation, :numeric_string => true, as: 'generation'
+          property :hard_delete_time, as: 'hardDeleteTime', type: DateTime
+      
           property :id, as: 'id'
           property :kind, as: 'kind'
           property :kms_key_name, as: 'kmsKeyName'
@@ -686,10 +834,14 @@ module Google
           property :name, as: 'name'
           property :owner, as: 'owner', class: Google::Apis::StorageV1::Object::Owner, decorator: Google::Apis::StorageV1::Object::Owner::Representation
       
+          property :retention, as: 'retention', class: Google::Apis::StorageV1::Object::Retention, decorator: Google::Apis::StorageV1::Object::Retention::Representation
+      
           property :retention_expiration_time, as: 'retentionExpirationTime', type: DateTime
       
           property :self_link, as: 'selfLink'
           property :size, :numeric_string => true, as: 'size'
+          property :soft_delete_time, as: 'softDeleteTime', type: DateTime
+      
           property :storage_class, as: 'storageClass'
           property :temporary_hold, as: 'temporaryHold'
           property :time_created, as: 'timeCreated', type: DateTime
@@ -715,6 +867,15 @@ module Google
           class Representation < Google::Apis::Core::JsonRepresentation
             property :entity, as: 'entity'
             property :entity_id, as: 'entityId'
+          end
+        end
+        
+        class Retention
+          # @private
+          class Representation < Google::Apis::Core::JsonRepresentation
+            property :mode, as: 'mode'
+            property :retain_until_time, as: 'retainUntilTime', type: DateTime
+        
           end
         end
       end
