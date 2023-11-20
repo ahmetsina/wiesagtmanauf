@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
-# stub: aws-sdk-core 3.187.0 ruby lib
+# stub: aws-sdk-core 3.187.1 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "aws-sdk-core".freeze
-  s.version = "3.187.0"
+  s.version = "3.187.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "changelog_uri" => "https://github.com/aws/aws-sdk-ruby/tree/version-3/gems/aws-sdk-core/CHANGELOG.md", "source_code_uri" => "https://github.com/aws/aws-sdk-ruby/tree/version-3/gems/aws-sdk-core" } if s.respond_to? :metadata=
   s.require_paths = ["lib".freeze]
   s.authors = ["Amazon Web Services".freeze]
-  s.date = "2023-11-17"
+  s.date = "2023-11-20"
   s.description = "Provides API clients for AWS. This gem is part of the official AWS SDK for Ruby.".freeze
   s.homepage = "https://github.com/aws/aws-sdk-ruby".freeze
   s.licenses = ["Apache-2.0".freeze]
