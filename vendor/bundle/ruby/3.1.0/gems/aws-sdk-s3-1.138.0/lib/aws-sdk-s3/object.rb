@@ -9,7 +9,7 @@
 
 module Aws::S3
 
-  class ObjectSummary
+  class Object
 
     extend Aws::Deprecations
 
@@ -42,74 +42,355 @@ module Aws::S3
       @key
     end
 
-    # Creation date of the object.
+    # Specifies whether the object retrieved was (true) or was not (false) a
+    # Delete Marker. If false, this response header does not appear in the
+    # response.
+    # @return [Boolean]
+    def delete_marker
+      data[:delete_marker]
+    end
+
+    # Indicates that a range of bytes was specified.
+    # @return [String]
+    def accept_ranges
+      data[:accept_ranges]
+    end
+
+    # If the object expiration is configured (see PUT Bucket lifecycle), the
+    # response includes this header. It includes the `expiry-date` and
+    # `rule-id` key-value pairs providing object expiration information. The
+    # value of the `rule-id` is URL-encoded.
+    # @return [String]
+    def expiration
+      data[:expiration]
+    end
+
+    # If the object is an archived object (an object whose storage class is
+    # GLACIER), the response includes this header if either the archive
+    # restoration is in progress (see [RestoreObject][1] or an archive copy
+    # is already restored.
+    #
+    # If an archive copy is already restored, the header value indicates
+    # when Amazon S3 is scheduled to delete the object copy. For example:
+    #
+    # `x-amz-restore: ongoing-request="false", expiry-date="Fri, 21 Dec 2012
+    # 00:00:00 GMT"`
+    #
+    # If the object restoration is in progress, the header returns the value
+    # `ongoing-request="true"`.
+    #
+    # For more information about archiving objects, see [Transitioning
+    # Objects: General Considerations][2].
+    #
+    #
+    #
+    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html
+    # [2]: https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html#lifecycle-transition-general-considerations
+    # @return [String]
+    def restore
+      data[:restore]
+    end
+
+    # The archive state of the head object.
+    # @return [String]
+    def archive_status
+      data[:archive_status]
+    end
+
+    # Date and time when the object was last modified.
     # @return [Time]
     def last_modified
       data[:last_modified]
     end
 
-    # The entity tag is a hash of the object. The ETag reflects changes only
-    # to the contents of an object, not its metadata. The ETag may or may
-    # not be an MD5 digest of the object data. Whether or not it is depends
-    # on how the object was created and how it is encrypted as described
-    # below:
+    # Size of the body in bytes.
+    # @return [Integer]
+    def content_length
+      data[:content_length]
+    end
+
+    # The base64-encoded, 32-bit CRC32 checksum of the object. This will
+    # only be present if it was uploaded with the object. With multipart
+    # uploads, this may not be a checksum value of the object. For more
+    # information about how checksums are calculated with multipart uploads,
+    # see [ Checking object integrity][1] in the *Amazon S3 User Guide*.
     #
-    # * Objects created by the PUT Object, POST Object, or Copy operation,
-    #   or through the Amazon Web Services Management Console, and are
-    #   encrypted by SSE-S3 or plaintext, have ETags that are an MD5 digest
-    #   of their object data.
     #
-    # * Objects created by the PUT Object, POST Object, or Copy operation,
-    #   or through the Amazon Web Services Management Console, and are
-    #   encrypted by SSE-C or SSE-KMS, have ETags that are not an MD5 digest
-    #   of their object data.
     #
-    # * If an object is created by either the Multipart Upload or Part Copy
-    #   operation, the ETag is not an MD5 digest, regardless of the method
-    #   of encryption. If an object is larger than 16 MB, the Amazon Web
-    #   Services Management Console will upload or copy that object as a
-    #   Multipart Upload, and therefore the ETag will not be an MD5 digest.
+    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums
+    # @return [String]
+    def checksum_crc32
+      data[:checksum_crc32]
+    end
+
+    # The base64-encoded, 32-bit CRC32C checksum of the object. This will
+    # only be present if it was uploaded with the object. With multipart
+    # uploads, this may not be a checksum value of the object. For more
+    # information about how checksums are calculated with multipart uploads,
+    # see [ Checking object integrity][1] in the *Amazon S3 User Guide*.
+    #
+    #
+    #
+    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums
+    # @return [String]
+    def checksum_crc32c
+      data[:checksum_crc32c]
+    end
+
+    # The base64-encoded, 160-bit SHA-1 digest of the object. This will only
+    # be present if it was uploaded with the object. With multipart uploads,
+    # this may not be a checksum value of the object. For more information
+    # about how checksums are calculated with multipart uploads, see [
+    # Checking object integrity][1] in the *Amazon S3 User Guide*.
+    #
+    #
+    #
+    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums
+    # @return [String]
+    def checksum_sha1
+      data[:checksum_sha1]
+    end
+
+    # The base64-encoded, 256-bit SHA-256 digest of the object. This will
+    # only be present if it was uploaded with the object. With multipart
+    # uploads, this may not be a checksum value of the object. For more
+    # information about how checksums are calculated with multipart uploads,
+    # see [ Checking object integrity][1] in the *Amazon S3 User Guide*.
+    #
+    #
+    #
+    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums
+    # @return [String]
+    def checksum_sha256
+      data[:checksum_sha256]
+    end
+
+    # An entity tag (ETag) is an opaque identifier assigned by a web server
+    # to a specific version of a resource found at a URL.
     # @return [String]
     def etag
       data[:etag]
     end
 
-    # The algorithm that was used to create a checksum of the object.
-    # @return [Array<String>]
-    def checksum_algorithm
-      data[:checksum_algorithm]
-    end
-
-    # Size in bytes of the object
+    # This is set to the number of metadata entries not returned in
+    # `x-amz-meta` headers. This can happen if you create metadata using an
+    # API like SOAP that supports more flexible metadata than the REST API.
+    # For example, using SOAP, you can create metadata whose values are not
+    # legal HTTP headers.
     # @return [Integer]
-    def size
-      data[:size]
+    def missing_meta
+      data[:missing_meta]
     end
 
-    # The class of storage used to store the object.
+    # Version of the object.
+    # @return [String]
+    def version_id
+      data[:version_id]
+    end
+
+    # Specifies caching behavior along the request/reply chain.
+    # @return [String]
+    def cache_control
+      data[:cache_control]
+    end
+
+    # Specifies presentational information for the object.
+    # @return [String]
+    def content_disposition
+      data[:content_disposition]
+    end
+
+    # Specifies what content encodings have been applied to the object and
+    # thus what decoding mechanisms must be applied to obtain the media-type
+    # referenced by the Content-Type header field.
+    # @return [String]
+    def content_encoding
+      data[:content_encoding]
+    end
+
+    # The language the content is in.
+    # @return [String]
+    def content_language
+      data[:content_language]
+    end
+
+    # A standard MIME type describing the format of the object data.
+    # @return [String]
+    def content_type
+      data[:content_type]
+    end
+
+    # The date and time at which the object is no longer cacheable.
+    # @return [Time]
+    def expires
+      data[:expires]
+    end
+
+    # @return [String]
+    def expires_string
+      data[:expires_string]
+    end
+
+    # If the bucket is configured as a website, redirects requests for this
+    # object to another object in the same bucket or to an external URL.
+    # Amazon S3 stores the value of this header in the object metadata.
+    # @return [String]
+    def website_redirect_location
+      data[:website_redirect_location]
+    end
+
+    # The server-side encryption algorithm used when storing this object in
+    # Amazon S3 (for example, `AES256`, `aws:kms`, `aws:kms:dsse`).
+    # @return [String]
+    def server_side_encryption
+      data[:server_side_encryption]
+    end
+
+    # A map of metadata to store with the object in S3.
+    # @return [Hash<String,String>]
+    def metadata
+      data[:metadata]
+    end
+
+    # If server-side encryption with a customer-provided encryption key was
+    # requested, the response will include this header confirming the
+    # encryption algorithm used.
+    # @return [String]
+    def sse_customer_algorithm
+      data[:sse_customer_algorithm]
+    end
+
+    # If server-side encryption with a customer-provided encryption key was
+    # requested, the response will include this header to provide round-trip
+    # message integrity verification of the customer-provided encryption
+    # key.
+    # @return [String]
+    def sse_customer_key_md5
+      data[:sse_customer_key_md5]
+    end
+
+    # If present, specifies the ID of the Key Management Service (KMS)
+    # symmetric encryption customer managed key that was used for the
+    # object.
+    # @return [String]
+    def ssekms_key_id
+      data[:ssekms_key_id]
+    end
+
+    # Indicates whether the object uses an S3 Bucket Key for server-side
+    # encryption with Key Management Service (KMS) keys (SSE-KMS).
+    # @return [Boolean]
+    def bucket_key_enabled
+      data[:bucket_key_enabled]
+    end
+
+    # Provides storage class information of the object. Amazon S3 returns
+    # this header for all objects except for S3 Standard storage class
+    # objects.
+    #
+    # For more information, see [Storage Classes][1].
+    #
+    #
+    #
+    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html
     # @return [String]
     def storage_class
       data[:storage_class]
     end
 
-    # The owner of the object
-    # @return [Types::Owner]
-    def owner
-      data[:owner]
+    # If present, indicates that the requester was successfully charged for
+    # the request.
+    # @return [String]
+    def request_charged
+      data[:request_charged]
     end
 
-    # Specifies the restoration status of an object. Objects in certain
-    # storage classes must be restored before they can be retrieved. For
-    # more information about these storage classes and how to work with
-    # archived objects, see [ Working with archived objects][1] in the
-    # *Amazon S3 User Guide*.
+    # Amazon S3 can return this header if your request involves a bucket
+    # that is either a source or a destination in a replication rule.
+    #
+    # In replication, you have a source bucket on which you configure
+    # replication and destination bucket or buckets where Amazon S3 stores
+    # object replicas. When you request an object (`GetObject`) or object
+    # metadata (`HeadObject`) from these buckets, Amazon S3 will return the
+    # `x-amz-replication-status` header in the response as follows:
+    #
+    # * **If requesting an object from the source bucket**, Amazon S3 will
+    #   return the `x-amz-replication-status` header if the object in your
+    #   request is eligible for replication.
+    #
+    #   For example, suppose that in your replication configuration, you
+    #   specify object prefix `TaxDocs` requesting Amazon S3 to replicate
+    #   objects with key prefix `TaxDocs`. Any objects you upload with this
+    #   key name prefix, for example `TaxDocs/document1.pdf`, are eligible
+    #   for replication. For any object request with this key name prefix,
+    #   Amazon S3 will return the `x-amz-replication-status` header with
+    #   value PENDING, COMPLETED or FAILED indicating object replication
+    #   status.
+    #
+    # * **If requesting an object from a destination bucket**, Amazon S3
+    #   will return the `x-amz-replication-status` header with value REPLICA
+    #   if the object in your request is a replica that Amazon S3 created
+    #   and there is no replica modification replication in progress.
+    #
+    # * **When replicating objects to multiple destination buckets**, the
+    #   `x-amz-replication-status` header acts differently. The header of
+    #   the source object will only return a value of COMPLETED when
+    #   replication is successful to all destinations. The header will
+    #   remain at value PENDING until replication has completed for all
+    #   destinations. If one or more destinations fails replication the
+    #   header will return FAILED.
+    #
+    # For more information, see [Replication][1].
     #
     #
     #
-    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/archived-objects.html
-    # @return [Types::RestoreStatus]
-    def restore_status
-      data[:restore_status]
+    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html
+    # @return [String]
+    def replication_status
+      data[:replication_status]
+    end
+
+    # The count of parts this object has. This value is only returned if you
+    # specify `partNumber` in your request and the object was uploaded as a
+    # multipart upload.
+    # @return [Integer]
+    def parts_count
+      data[:parts_count]
+    end
+
+    # The Object Lock mode, if any, that's in effect for this object. This
+    # header is only returned if the requester has the
+    # `s3:GetObjectRetention` permission. For more information about S3
+    # Object Lock, see [Object Lock][1].
+    #
+    #
+    #
+    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html
+    # @return [String]
+    def object_lock_mode
+      data[:object_lock_mode]
+    end
+
+    # The date and time when the Object Lock retention period expires. This
+    # header is only returned if the requester has the
+    # `s3:GetObjectRetention` permission.
+    # @return [Time]
+    def object_lock_retain_until_date
+      data[:object_lock_retain_until_date]
+    end
+
+    # Specifies whether a legal hold is in effect for this object. This
+    # header is only returned if the requester has the
+    # `s3:GetObjectLegalHold` permission. This header is not returned if the
+    # specified version of this object has never had a legal hold applied.
+    # For more information about S3 Object Lock, see [Object Lock][1].
+    #
+    #
+    #
+    # [1]: https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html
+    # @return [String]
+    def object_lock_legal_hold_status
+      data[:object_lock_legal_hold_status]
     end
 
     # @!endgroup
@@ -119,17 +400,27 @@ module Aws::S3
       @client
     end
 
-    # @raise [NotImplementedError]
-    # @api private
+    # Loads, or reloads {#data} for the current {Object}.
+    # Returns `self` making it possible to chain methods.
+    #
+    #     object.reload.data
+    #
+    # @return [self]
     def load
-      msg = "#load is not implemented, data only available via enumeration"
-      raise NotImplementedError, msg
+      resp = Aws::Plugins::UserAgent.feature('resource') do
+        @client.head_object(
+        bucket: @bucket_name,
+        key: @key
+      )
+      end
+      @data = resp.data
+      self
     end
     alias :reload :load
 
-    # @raise [NotImplementedError] Raises when {#data_loaded?} is `false`.
-    # @return [Types::Object]
-    #   Returns the data for this {ObjectSummary}.
+    # @return [Types::HeadObjectOutput]
+    #   Returns the data for this {Object}. Calls
+    #   {Client#head_object} if {#data_loaded?} is `false`.
     def data
       load unless @data
       @data
@@ -144,7 +435,7 @@ module Aws::S3
 
     # @param [Hash] options ({})
     # @return [Boolean]
-    #   Returns `true` if the ObjectSummary exists.
+    #   Returns `true` if the Object exists.
     def exists?(options = {})
       begin
         wait_until_exists(options.merge(max_attempts: 1))
@@ -161,7 +452,7 @@ module Aws::S3
     # @option options [Float] :delay (5)
     # @option options [Proc] :before_attempt
     # @option options [Proc] :before_wait
-    # @return [ObjectSummary]
+    # @return [Object]
     def wait_until_exists(options = {}, &block)
       options, params = separate_params_and_options(options)
       waiter = Waiters::ObjectExists.new(options)
@@ -170,7 +461,7 @@ module Aws::S3
         waiter.wait(params.merge(bucket: @bucket_name,
         key: @key))
       end
-      ObjectSummary.new({
+      Object.new({
         bucket_name: @bucket_name,
         key: @key,
         client: @client
@@ -182,7 +473,7 @@ module Aws::S3
     # @option options [Float] :delay (5)
     # @option options [Proc] :before_attempt
     # @option options [Proc] :before_wait
-    # @return [ObjectSummary]
+    # @return [Object]
     def wait_until_not_exists(options = {}, &block)
       options, params = separate_params_and_options(options)
       waiter = Waiters::ObjectNotExists.new(options)
@@ -191,7 +482,7 @@ module Aws::S3
         waiter.wait(params.merge(bucket: @bucket_name,
         key: @key))
       end
-      ObjectSummary.new({
+      Object.new({
         bucket_name: @bucket_name,
         key: @key,
         client: @client
@@ -301,7 +592,7 @@ module Aws::S3
 
     # @example Request syntax with placeholder values
     #
-    #   object_summary.copy_from({
+    #   object.copy_from({
     #     acl: "private", # accepts private, public-read, public-read-write, authenticated-read, aws-exec-read, bucket-owner-read, bucket-owner-full-control
     #     cache_control: "CacheControl",
     #     checksum_algorithm: "CRC32", # accepts CRC32, CRC32C, SHA1, SHA256
@@ -501,7 +792,9 @@ module Aws::S3
     # @option options [String] :ssekms_encryption_context
     #   Specifies the Amazon Web Services KMS Encryption Context to use for
     #   object encryption. The value of this header is a base64-encoded UTF-8
-    #   string holding JSON with the encryption context key-value pairs.
+    #   string holding JSON with the encryption context key-value pairs. This
+    #   value must be explicitly added to specify encryption context for
+    #   CopyObject requests.
     # @option options [Boolean] :bucket_key_enabled
     #   Specifies whether Amazon S3 should use an S3 Bucket Key for object
     #   encryption with server-side encryption using Key Management Service
@@ -566,7 +859,7 @@ module Aws::S3
 
     # @example Request syntax with placeholder values
     #
-    #   object_summary.delete({
+    #   object.delete({
     #     mfa: "MFA",
     #     version_id: "ObjectVersionId",
     #     request_payer: "requester", # accepts requester
@@ -615,7 +908,7 @@ module Aws::S3
 
     # @example Request syntax with placeholder values
     #
-    #   object_summary.get({
+    #   object.get({
     #     if_match: "IfMatch",
     #     if_modified_since: Time.now,
     #     if_none_match: "IfNoneMatch",
@@ -726,7 +1019,7 @@ module Aws::S3
 
     # @example Request syntax with placeholder values
     #
-    #   multipartupload = object_summary.initiate_multipart_upload({
+    #   multipartupload = object.initiate_multipart_upload({
     #     acl: "private", # accepts private, public-read, public-read-write, authenticated-read, aws-exec-read, bucket-owner-read, bucket-owner-full-control
     #     cache_control: "CacheControl",
     #     content_disposition: "ContentDisposition",
@@ -905,7 +1198,7 @@ module Aws::S3
 
     # @example Request syntax with placeholder values
     #
-    #   object_summary.put({
+    #   object.put({
     #     acl: "private", # accepts private, public-read, public-read-write, authenticated-read, aws-exec-read, bucket-owner-read, bucket-owner-full-control
     #     body: source_file,
     #     cache_control: "CacheControl",
@@ -1162,7 +1455,8 @@ module Aws::S3
     #   string holding JSON with the encryption context key-value pairs. This
     #   value is stored as object metadata and automatically gets passed on to
     #   Amazon Web Services KMS for future `GetObject` or `CopyObject`
-    #   operations on this object.
+    #   operations on this object. This value must be explicitly added during
+    #   CopyObject operations.
     # @option options [Boolean] :bucket_key_enabled
     #   Specifies whether Amazon S3 should use an S3 Bucket Key for object
     #   encryption with server-side encryption using Key Management Service
@@ -1216,7 +1510,7 @@ module Aws::S3
 
     # @example Request syntax with placeholder values
     #
-    #   object_summary.restore_object({
+    #   object.restore_object({
     #     version_id: "ObjectVersionId",
     #     restore_request: {
     #       days: 1,
@@ -1351,6 +1645,96 @@ module Aws::S3
       resp.data
     end
 
+    # @example Request syntax with placeholder values
+    #
+    #   object.head({
+    #     if_match: "IfMatch",
+    #     if_modified_since: Time.now,
+    #     if_none_match: "IfNoneMatch",
+    #     if_unmodified_since: Time.now,
+    #     range: "Range",
+    #     version_id: "ObjectVersionId",
+    #     sse_customer_algorithm: "SSECustomerAlgorithm",
+    #     sse_customer_key: "SSECustomerKey",
+    #     sse_customer_key_md5: "SSECustomerKeyMD5",
+    #     request_payer: "requester", # accepts requester
+    #     part_number: 1,
+    #     expected_bucket_owner: "AccountId",
+    #     checksum_mode: "ENABLED", # accepts ENABLED
+    #   })
+    # @param [Hash] options ({})
+    # @option options [String] :if_match
+    #   Return the object only if its entity tag (ETag) is the same as the one
+    #   specified; otherwise, return a 412 (precondition failed) error.
+    # @option options [Time,DateTime,Date,Integer,String] :if_modified_since
+    #   Return the object only if it has been modified since the specified
+    #   time; otherwise, return a 304 (not modified) error.
+    # @option options [String] :if_none_match
+    #   Return the object only if its entity tag (ETag) is different from the
+    #   one specified; otherwise, return a 304 (not modified) error.
+    # @option options [Time,DateTime,Date,Integer,String] :if_unmodified_since
+    #   Return the object only if it has not been modified since the specified
+    #   time; otherwise, return a 412 (precondition failed) error.
+    # @option options [String] :range
+    #   HeadObject returns only the metadata for an object. If the Range is
+    #   satisfiable, only the `ContentLength` is affected in the response. If
+    #   the Range is not satisfiable, S3 returns a `416 - Requested Range Not
+    #   Satisfiable` error.
+    # @option options [String] :version_id
+    #   VersionId used to reference a specific version of the object.
+    # @option options [String] :sse_customer_algorithm
+    #   Specifies the algorithm to use to when encrypting the object (for
+    #   example, AES256).
+    # @option options [String] :sse_customer_key
+    #   Specifies the customer-provided encryption key for Amazon S3 to use in
+    #   encrypting data. This value is used to store the object and then it is
+    #   discarded; Amazon S3 does not store the encryption key. The key must
+    #   be appropriate for use with the algorithm specified in the
+    #   `x-amz-server-side-encryption-customer-algorithm` header.
+    # @option options [String] :sse_customer_key_md5
+    #   Specifies the 128-bit MD5 digest of the encryption key according to
+    #   RFC 1321. Amazon S3 uses this header for a message integrity check to
+    #   ensure that the encryption key was transmitted without error.
+    # @option options [String] :request_payer
+    #   Confirms that the requester knows that they will be charged for the
+    #   request. Bucket owners need not specify this parameter in their
+    #   requests. If either the source or destination Amazon S3 bucket has
+    #   Requester Pays enabled, the requester will pay for corresponding
+    #   charges to copy the object. For information about downloading objects
+    #   from Requester Pays buckets, see [Downloading Objects in Requester
+    #   Pays Buckets][1] in the *Amazon S3 User Guide*.
+    #
+    #
+    #
+    #   [1]: https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+    # @option options [Integer] :part_number
+    #   Part number of the object being read. This is a positive integer
+    #   between 1 and 10,000. Effectively performs a 'ranged' HEAD request
+    #   for the part specified. Useful querying about the size of the part and
+    #   the number of parts in this object.
+    # @option options [String] :expected_bucket_owner
+    #   The account ID of the expected bucket owner. If the bucket is owned by
+    #   a different account, the request fails with the HTTP status code `403
+    #   Forbidden` (access denied).
+    # @option options [String] :checksum_mode
+    #   To retrieve the checksum, this parameter must be enabled.
+    #
+    #   In addition, if you enable `ChecksumMode` and the object is encrypted
+    #   with Amazon Web Services Key Management Service (Amazon Web Services
+    #   KMS), you must have permission to use the `kms:Decrypt` action for the
+    #   request to succeed.
+    # @return [Types::HeadObjectOutput]
+    def head(options = {})
+      options = options.merge(
+        bucket: @bucket_name,
+        key: @key
+      )
+      resp = Aws::Plugins::UserAgent.feature('resource') do
+        @client.head_object(options)
+      end
+      resp.data
+    end
+
     # @!group Associations
 
     # @return [ObjectAcl]
@@ -1377,15 +1761,6 @@ module Aws::S3
         bucket_name: @bucket_name,
         object_key: @key,
         id: id,
-        client: @client
-      )
-    end
-
-    # @return [Object]
-    def object
-      Object.new(
-        bucket_name: @bucket_name,
-        key: @key,
         client: @client
       )
     end
@@ -1468,7 +1843,7 @@ module Aws::S3
 
       # @example Request syntax with placeholder values
       #
-      #   object_summary.batch_delete!({
+      #   object.batch_delete!({
       #     mfa: "MFA",
       #     request_payer: "requester", # accepts requester
       #     bypass_governance_retention: false,
