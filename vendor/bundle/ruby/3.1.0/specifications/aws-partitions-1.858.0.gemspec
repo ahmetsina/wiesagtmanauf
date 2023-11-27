@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-# stub: aws-partitions 1.857.0 ruby lib
+# stub: aws-partitions 1.858.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "aws-partitions".freeze
-  s.version = "1.857.0"
+  s.version = "1.858.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "changelog_uri" => "https://github.com/aws/aws-sdk-ruby/tree/version-3/gems/aws-partitions/CHANGELOG.md", "source_code_uri" => "https://github.com/aws/aws-sdk-ruby/tree/version-3/gems/aws-partitions" } if s.respond_to? :metadata=
