@@ -42,6 +42,7 @@ module Google
 
         attr_reader :expires_at
         attr_accessor :access_token
+        attr_accessor :universe_domain
 
         def expires_within? seconds
           # This method is needed for BaseClient
@@ -85,8 +86,7 @@ module Google
         #     true if the credentials represent a workforce pool.
         #     false if they represent a workload.
         def is_workforce_pool?
-          pattern = "//iam\.googleapis\.com/locations/[^/]+/workforcePools/"
-          /#{pattern}/.match?(@audience || "")
+          %r{/iam\.googleapis\.com/locations/[^/]+/workforcePools/}.match?(@audience || "")
         end
 
         private
@@ -111,6 +111,7 @@ module Google
           @quota_project_id = options[:quota_project_id]
           @project_id = nil
           @workforce_pool_user_project = options[:workforce_pool_user_project]
+          @universe_domain = options[:universe_domain] || "googleapis.com"
 
           @expires_at = nil
           @access_token = nil
