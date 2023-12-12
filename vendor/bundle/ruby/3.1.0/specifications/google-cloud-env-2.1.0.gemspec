@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
-# stub: google-cloud-env 2.0.1 ruby lib
+# stub: google-cloud-env 2.1.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "google-cloud-env".freeze
-  s.version = "2.0.1"
+  s.version = "2.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
-  s.metadata = { "bug_tracker_uri" => "https://github.com/googleapis/ruby-cloud-env/issues", "changelog_uri" => "https://rubydoc.info/gems/google-cloud-env/2.0.1/CHANGELOG.md", "documentation_uri" => "https://rubydoc.info/gems/google-cloud-env/2.0.1", "source_code_uri" => "https://github.com/googleapis/ruby-cloud-env" } if s.respond_to? :metadata=
+  s.metadata = { "bug_tracker_uri" => "https://github.com/googleapis/ruby-cloud-env/issues", "changelog_uri" => "https://rubydoc.info/gems/google-cloud-env/2.1.0/CHANGELOG.md", "documentation_uri" => "https://rubydoc.info/gems/google-cloud-env/2.1.0", "source_code_uri" => "https://github.com/googleapis/ruby-cloud-env" } if s.respond_to? :metadata=
   s.require_paths = ["lib".freeze]
   s.authors = ["Daniel Azuma".freeze]
-  s.date = "2023-12-01"
+  s.date = "2023-12-12"
   s.description = "google-cloud-env provides information on the Google Cloud Platform hosting environment. Applications can use this library to determine hosting context information such as the project ID, whether App Engine is running, what tags are set on the VM instance, and much more.".freeze
   s.email = ["dazuma@google.com".freeze]
   s.homepage = "https://github.com/googleapis/ruby-cloud-env".freeze
