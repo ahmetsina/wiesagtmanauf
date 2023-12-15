@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-# stub: excon 0.107.0 ruby lib
+# stub: excon 0.108.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "excon".freeze
-  s.version = "0.107.0"
+  s.version = "0.108.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "bug_tracker_uri" => "https://github.com/excon/excon/issues", "changelog_uri" => "https://github.com/excon/excon/blob/master/changelog.txt", "documentation_uri" => "https://github.com/excon/excon/blob/master/README.md", "homepage_uri" => "https://github.com/excon/excon", "source_code_uri" => "https://github.com/excon/excon", "wiki_uri" => "https://github.com/excon/excon/wiki" } if s.respond_to? :metadata=
