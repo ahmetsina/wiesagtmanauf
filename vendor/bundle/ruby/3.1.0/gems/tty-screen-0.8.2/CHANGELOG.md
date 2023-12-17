@@ -1,5 +1,25 @@
 # Change log
 
+## [v0.8.2] - 2023-12-17
+
+### Changed
+* Change the ioctl system call support check to use the output method
+* Change size from ioctl to extract window buffer format and length to constants
+* Change size from ioctl to allocate and read window buffer with fewer objects
+* Change size detection from tput to check TTY on the output method
+* Change size detection from stty to check TTY on the output method
+* Change size detection from the environment variables to use the env method
+* Change size from the ansicon environment variable to use the env method
+* Change size from ansicon to use regexp last match to lookup pattern matches
+* Change size from ansicon to allocate window dimensions with fewer objects
+
+### Fixed
+* Fix ioctl call test to stub terminal size encoding for big-endian systems
+* Fix to skip terminal size detection from readline on non-TTY output
+* Fix size detection from IO to skip loading io-console on non-TTY output
+* Fix size detection from tput to check for non-zero columns instead of lines
+* Fix JRuby and Windows system detection to check Ruby configuration only once
+
 ## [v0.8.1] - 2020-07-17
 
 ### Fixed
@@ -136,6 +156,7 @@
 ### Fixed
 * Fix bug with screen detection from_io_console by @luxflux
 
+[v0.8.2]: https://github.com/piotrmurach/tty-screen/compare/v0.8.1...v0.8.2
 [v0.8.1]: https://github.com/piotrmurach/tty-screen/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/piotrmurach/tty-screen/compare/v0.7.1...v0.8.0
 [v0.7.1]: https://github.com/piotrmurach/tty-screen/compare/v0.7.0...v0.7.1
