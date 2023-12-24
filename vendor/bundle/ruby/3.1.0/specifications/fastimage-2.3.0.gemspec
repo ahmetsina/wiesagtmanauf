@@ -1,18 +1,18 @@
 # -*- encoding: utf-8 -*-
-# stub: fastimage 2.2.7 ruby lib
+# stub: fastimage 2.3.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "fastimage".freeze
-  s.version = "2.2.7"
+  s.version = "2.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Stephen Sykes".freeze]
-  s.date = "2021-02-28"
+  s.date = "2023-12-24"
   s.description = "FastImage finds the size or type of an image given its uri by fetching as little as needed.".freeze
   s.email = "sdsykes@gmail.com".freeze
-  s.extra_rdoc_files = ["README.textile".freeze]
-  s.files = ["README.textile".freeze]
+  s.extra_rdoc_files = ["README.md".freeze]
+  s.files = ["README.md".freeze]
   s.homepage = "http://github.com/sdsykes/fastimage".freeze
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--charset=UTF-8".freeze]
