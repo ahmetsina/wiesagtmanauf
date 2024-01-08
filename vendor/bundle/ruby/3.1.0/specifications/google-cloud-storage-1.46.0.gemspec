@@ -1,19 +1,19 @@
 # -*- encoding: utf-8 -*-
-# stub: google-cloud-storage 1.45.0 ruby lib
+# stub: google-cloud-storage 1.46.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "google-cloud-storage".freeze
-  s.version = "1.45.0"
+  s.version = "1.46.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Mike Moore".freeze, "Chris Smith".freeze]
-  s.date = "2023-11-06"
+  s.date = "2024-01-08"
   s.description = "google-cloud-storage is the official library for Google Cloud Storage.".freeze
   s.email = ["mike@blowmage.com".freeze, "quartzmo@gmail.com".freeze]
   s.homepage = "https://github.com/googleapis/google-cloud-ruby/tree/master/google-cloud-storage".freeze
   s.licenses = ["Apache-2.0".freeze]
-  s.required_ruby_version = Gem::Requirement.new(">= 2.5".freeze)
+  s.required_ruby_version = Gem::Requirement.new(">= 2.7".freeze)
   s.rubygems_version = "3.3.26".freeze
   s.summary = "API Client library for Google Cloud Storage".freeze
 
