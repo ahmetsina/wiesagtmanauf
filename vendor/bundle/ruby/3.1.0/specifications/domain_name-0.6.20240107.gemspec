@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
-# stub: domain_name 0.6.20231109 ruby lib
+# stub: domain_name 0.6.20240107 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "domain_name".freeze
-  s.version = "0.6.20231109"
+  s.version = "0.6.20240107"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Akinori MUSHA".freeze]
-  s.date = "2023-11-14"
+  s.date = "2024-01-09"
   s.description = "This is a Domain Name manipulation library for Ruby.\n\nIt can also be used for cookie domain validation based on the Public\nSuffix List.\n".freeze
   s.email = ["knu@idaemons.org".freeze]
   s.extra_rdoc_files = ["LICENSE.txt".freeze, "README.md".freeze]
