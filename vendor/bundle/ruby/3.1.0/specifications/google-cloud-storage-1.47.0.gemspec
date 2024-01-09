@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
-# stub: google-cloud-storage 1.46.0 ruby lib
+# stub: google-cloud-storage 1.47.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "google-cloud-storage".freeze
-  s.version = "1.46.0"
+  s.version = "1.47.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Mike Moore".freeze, "Chris Smith".freeze]
-  s.date = "2024-01-08"
+  s.date = "2024-01-09"
   s.description = "google-cloud-storage is the official library for Google Cloud Storage.".freeze
   s.email = ["mike@blowmage.com".freeze, "quartzmo@gmail.com".freeze]
   s.homepage = "https://github.com/googleapis/google-cloud-ruby/tree/master/google-cloud-storage".freeze
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   if s.respond_to? :add_runtime_dependency then
     s.add_runtime_dependency(%q<google-cloud-core>.freeze, ["~> 1.6"])
     s.add_runtime_dependency(%q<google-apis-iamcredentials_v1>.freeze, ["~> 0.1"])
-    s.add_runtime_dependency(%q<google-apis-storage_v1>.freeze, ["~> 0.29.0"])
+    s.add_runtime_dependency(%q<google-apis-storage_v1>.freeze, ["~> 0.31.0"])
     s.add_runtime_dependency(%q<googleauth>.freeze, [">= 0.16.2", "< 2.a"])
     s.add_runtime_dependency(%q<digest-crc>.freeze, ["~> 0.4"])
     s.add_runtime_dependency(%q<addressable>.freeze, ["~> 2.8"])
@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<google-cloud-core>.freeze, ["~> 1.6"])
     s.add_dependency(%q<google-apis-iamcredentials_v1>.freeze, ["~> 0.1"])
-    s.add_dependency(%q<google-apis-storage_v1>.freeze, ["~> 0.29.0"])
+    s.add_dependency(%q<google-apis-storage_v1>.freeze, ["~> 0.31.0"])
     s.add_dependency(%q<googleauth>.freeze, [">= 0.16.2", "< 2.a"])
     s.add_dependency(%q<digest-crc>.freeze, ["~> 0.4"])
     s.add_dependency(%q<addressable>.freeze, ["~> 2.8"])
