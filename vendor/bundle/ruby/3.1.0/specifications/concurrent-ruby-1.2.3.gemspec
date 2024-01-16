@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
-# stub: concurrent-ruby 1.2.2 ruby lib/concurrent-ruby
+# stub: concurrent-ruby 1.2.3 ruby lib/concurrent-ruby
 
 Gem::Specification.new do |s|
   s.name = "concurrent-ruby".freeze
-  s.version = "1.2.2"
+  s.version = "1.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "changelog_uri" => "https://github.com/ruby-concurrency/concurrent-ruby/blob/master/CHANGELOG.md", "source_code_uri" => "https://github.com/ruby-concurrency/concurrent-ruby" } if s.respond_to? :metadata=
   s.require_paths = ["lib/concurrent-ruby".freeze]
   s.authors = ["Jerry D'Antonio".freeze, "Petr Chalupa".freeze, "The Ruby Concurrency Team".freeze]
-  s.date = "2023-02-24"
+  s.date = "2024-01-16"
   s.description = "Modern concurrency tools including agents, futures, promises, thread pools, actors, supervisors, and more.\nInspired by Erlang, Clojure, Go, JavaScript, actors, and classic concurrency patterns.\n".freeze
   s.email = "concurrent-ruby@googlegroups.com".freeze
   s.extra_rdoc_files = ["README.md".freeze, "LICENSE.txt".freeze, "CHANGELOG.md".freeze]
