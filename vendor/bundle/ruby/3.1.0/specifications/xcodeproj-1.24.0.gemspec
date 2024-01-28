@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
-# stub: xcodeproj 1.23.0 ruby lib
+# stub: xcodeproj 1.24.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "xcodeproj".freeze
-  s.version = "1.23.0"
+  s.version = "1.24.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Eloy Duran".freeze]
-  s.date = "2023-09-22"
+  s.date = "2024-01-28"
   s.description = "Xcodeproj lets you create and modify Xcode projects from Ruby. Script boring management tasks or build Xcode-friendly libraries. Also includes support for Xcode workspaces (.xcworkspace) and configuration files (.xcconfig).".freeze
   s.email = "eloy.de.enige@gmail.com".freeze
   s.executables = ["xcodeproj".freeze]
