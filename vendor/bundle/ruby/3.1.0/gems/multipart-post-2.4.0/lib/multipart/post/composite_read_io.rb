@@ -13,7 +13,7 @@
 # Copyright, 2019, by Olle Jonsson.
 # Copyright, 2019, by Patrick Davey.
 # Copyright, 2021, by Lewis Cowles.
-# Copyright, 2021-2022, by Samuel Williams.
+# Copyright, 2021-2024, by Samuel Williams.
 
 module Multipart
   module Post
@@ -33,8 +33,26 @@ module Multipart
         @index = 0
       end
 
+      # Close all the underyling IOs.
+      def close
+        @ios.each do |io|
+          io.close if io.respond_to?(:close)
+        end
+
+        @ios = nil
+        @index = 0
+      end
+
+      def closed?
+        @ios.nil?
+      end
+
       # Read from IOs in order until `length` bytes have been received.
       def read(length = nil, outbuf = nil)
+        if @ios.nil?
+          raise IOError, "CompositeReadIO is closed!"
+        end
+
         got_result = false
         outbuf = outbuf ? outbuf.replace("") : String.new
 

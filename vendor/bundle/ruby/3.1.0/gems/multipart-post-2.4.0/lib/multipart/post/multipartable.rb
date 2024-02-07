@@ -9,7 +9,7 @@
 # Copyright, 2013, by Socrates Vicente.
 # Copyright, 2013, by Steffen Grunwald.
 # Copyright, 2019, by Olle Jonsson.
-# Copyright, 2019-2022, by Samuel Williams.
+# Copyright, 2019-2024, by Samuel Williams.
 # Copyright, 2019, by Patrick Davey.
 # Copyright, 2022, by Jason York.
 
@@ -62,14 +62,8 @@ module Multipart
 
       private
 
-      if RUBY_VERSION >= "2.5.0"
-        def symbolize_keys(hash)
-          hash.transform_keys(&:to_sym)
-        end
-      else
-        def symbolize_keys(hash)
-          hash.map{|key,value| [key.to_sym, value]}.to_h
-        end
+      def symbolize_keys(hash)
+        hash.transform_keys(&:to_sym)
       end
     end
   end
