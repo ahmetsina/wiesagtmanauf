@@ -62,4 +62,29 @@ Einsamkeit (noun) is a German word that translates to "loneliness" in English. I
 2. "Trotz des Alleinseins genießt sie die Einsamkeit der Natur." (Despite being alone, she enjoys the solitude of nature.)
 3. "Die Abgeschiedenheit des Berges bot ihm die erhoffte Einsamkeit." (The seclusion of the mountain provided him with the solitude he longed for.)
 4. "Sie sehnt sich nach Geselligkeit, da die Einsamkeit sie quält." (She longs for sociability as loneliness troubles her.)
-5. "In der Zweisamkeit haben sie endlich ihre Einsamkeit überwunden." (In togetherness, they have finally overcome their loneliness.)\ <a id="yg-widget-0" class="youglish-widget" data-query="Einsamkeit" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Einsamkeit%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
+5. "In der Zweisamkeit haben sie endlich ihre Einsamkeit überwunden." (In togetherness, they have finally overcome their loneliness.)\ <a id="yg-widget-0" class="youglish-widget" data-query="Einsamkeit" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Einsamkeit%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>---
+layout: post
+image: assets/images/posts/Einsamkeit.png
+title: Einsamkeit
+categories: [Vocabulary]
+tags: [German, Definitions, Opposites, Synonyms, Examples]
+---
+
+## Einsamkeit
+
+**Definition**: Das Gefühl oder der Zustand, alleine und isoliert zu sein.
+
+**Opposites**: 
+
+- Geselligkeit: Das Gefühl oder der Zustand, in Gesellschaft anderer zu sein.
+
+**Synonyms**: 
+
+- Abgeschiedenheit: Das Gefühl oder der Zustand, sich von anderen fernzuhalten.
+- Alleinsein: Das Gefühl oder der Zustand, ohne Begleitung oder Unternehmen zu sein.
+
+**Examples**:
+
+1. Nachdem ihre Freunde alle weggezogen waren, empfand sie eine tiefe Einsamkeit.
+2. Er sehnte sich nach Einsamkeit, um in Ruhe nachzudenken und sich zu entspannen.
+3. Die Einsamkeit der weiten Wüste war überwältigend und zugleich faszinierend.\ <a id="yg-widget-0" class="youglish-widget" data-query="Einsamkeit" data-lang="german" data-components="8412" data-auto-start="0" data-bkg-color="theme_light" data-title="How%20to%20pronounce%20Einsamkeit%20in%20German"  rel="nofollow" href="https://youglish.com">Visit YouGlish.com</a><script async src="https://youglish.com/public/emb/widget.js" charset="utf-8"></script>
