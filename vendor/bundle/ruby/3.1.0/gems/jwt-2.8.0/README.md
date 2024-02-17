@@ -72,7 +72,6 @@ puts decoded_token
 ### **HMAC**
 
 * HS256 - HMAC using SHA-256 hash algorithm
-* HS512256 - HMAC using SHA-512-256 hash algorithm (only available with RbNaCl; see note below)
 * HS384 - HMAC using SHA-384 hash algorithm
 * HS512 - HMAC using SHA-512 hash algorithm
 
@@ -94,12 +93,6 @@ decoded_token = JWT.decode token, hmac_secret, true, { algorithm: 'HS256' }
 # ]
 puts decoded_token
 ```
-
-Note: If [RbNaCl](https://github.com/RubyCrypto/rbnacl) is loadable, ruby-jwt will use it for HMAC-SHA256, HMAC-SHA512-256, and HMAC-SHA512. RbNaCl prior to 6.0.0 only support a maximum key size of 32 bytes for these algorithms.
-
-[RbNaCl](https://github.com/RubyCrypto/rbnacl) requires
-[libsodium](https://github.com/jedisct1/libsodium), it can be installed
-on MacOS with `brew install libsodium`.
 
 ### **RSA**
 
@@ -561,7 +554,7 @@ crls = crl_uris.map do |uri|
 end
 
 begin
-  JWT.decode(token, nil, true, { x5c: { root_certificates: root_certificates, crls: crls })
+  JWT.decode(token, nil, true, { x5c: { root_certificates: root_certificates, crls: crls } })
 rescue JWT::DecodeError
   # Handle error, e.g. x5c header certificate revoked or expired
 end

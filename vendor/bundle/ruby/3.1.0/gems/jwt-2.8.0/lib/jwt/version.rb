@@ -11,9 +11,9 @@ module JWT
     # major version
     MAJOR = 2
     # minor version
-    MINOR = 7
+    MINOR = 8
     # tiny version
-    TINY  = 1
+    TINY  = 0
     # alpha, beta, etc. tag
     PRE   = nil
 
@@ -23,7 +23,8 @@ module JWT
 
   def self.openssl_3?
     return false if OpenSSL::OPENSSL_VERSION.include?('LibreSSL')
-    return true if OpenSSL::OPENSSL_VERSION_NUMBER >= 3 * 0x10000000
+
+    true if 3 * 0x10000000 <= OpenSSL::OPENSSL_VERSION_NUMBER
   end
 
   def self.rbnacl?
