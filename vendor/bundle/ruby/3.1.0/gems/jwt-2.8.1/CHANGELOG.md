@@ -1,5 +1,17 @@
 # Changelog
 
+## [v2.8.1](https://github.com/jwt/ruby-jwt/tree/v2.8.1) (2024-02-29)
+
+[Full Changelog](https://github.com/jwt/ruby-jwt/compare/v2.8.0...v2.8.1)
+
+**Features:**
+
+- Configurable base64 decode behaviour [#589](https://github.com/jwt/ruby-jwt/pull/589) ([@anakinj](https://github.com/anakinj))
+
+**Fixes and enhancements:**
+
+- Output deprecation warnings once [#589](https://github.com/jwt/ruby-jwt/pull/589) ([@anakinj](https://github.com/anakinj))
+
 ## [v2.8.0](https://github.com/jwt/ruby-jwt/tree/v2.8.0) (2024-02-17)
 
 [Full Changelog](https://github.com/jwt/ruby-jwt/compare/v2.7.1...v2.8.0)
