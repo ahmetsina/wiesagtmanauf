@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2016 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
 
 module Google
   module Cloud
-    module Errors
-      VERSION = "1.3.1".freeze
+    module Core
+      VERSION = "1.7.0".freeze
     end
   end
 end

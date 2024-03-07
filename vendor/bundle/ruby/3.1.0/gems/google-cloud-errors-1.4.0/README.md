@@ -1,11 +1,11 @@
-# google-cloud-core
+# google-cloud-errors
 
-This library contains shared types, such as error classes, for the google-cloud
-project. Please see the [GitHub
-repository](https://github.com/googleapis/google-cloud-ruby) for more
-information about the individual google-cloud gems.
+This library contains error classes raised by Google Cloud API clients.
+Please see the
+[GitHub repository](https://github.com/googleapis/google-cloud-ruby) for more
+information about Google Cloud gems.
 
-- [google-cloud-core API documentation](https://googleapis.dev/ruby/google-cloud-core/latest)
+- [google-cloud-errors API documentation](https://googleapis.dev/ruby/google-cloud-errors/latest)
 
 ## Supported Ruby Versions
 
@@ -29,24 +29,22 @@ change at any time and the public API should not be considered stable.
 
 Contributions to this library are always welcome and highly encouraged.
 
-See the [Contributing
-Guide](https://googleapis.dev/ruby/google-cloud-core/latest/file.CONTRIBUTING.html)
+See the
+[Contributing Guide](https://googleapis.dev/ruby/google-cloud-errors/latest/file.CONTRIBUTING.html)
 for more information on how to get started.
 
 Please note that this project is released with a Contributor Code of Conduct. By
-participating in this project you agree to abide by its terms. See [Code of
-Conduct](https://googleapis.dev/ruby/google-cloud-core/latest/file.CODE_OF_CONDUCT.html)
+participating in this project you agree to abide by its terms. See
+[Code of Conduct](https://googleapis.dev/ruby/google-cloud-errors/latest/file.CODE_OF_CONDUCT.html)
 for more information.
 
 ## License
 
 This library is licensed under Apache 2.0. Full license text is available in
-[LICENSE](https://googleapis.dev/ruby/google-cloud-core/latest/file.LICENSE.html).
+[LICENSE](https://googleapis.dev/ruby/google-cloud-errors/latest/file.LICENSE.html).
 
 ## Support
 
-Please [report bugs at the project on
-Github](https://github.com/googleapis/google-cloud-ruby/issues). Don't
-hesitate to [ask
-questions](http://stackoverflow.com/questions/tagged/google-cloud-platform+ruby)
-about the client or APIs on [StackOverflow](http://stackoverflow.com).
+Please report bugs
+[on Github](https://github.com/googleapis/google-cloud-ruby/issues).
+You can also ask questions about the client or APIs on StackOverflow.
