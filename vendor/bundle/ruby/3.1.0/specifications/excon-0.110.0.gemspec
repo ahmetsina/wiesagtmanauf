@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
-# stub: excon 0.109.0 ruby lib
+# stub: excon 0.110.0 ruby lib
 
 Gem::Specification.new do |s|
   s.name = "excon".freeze
-  s.version = "0.109.0"
+  s.version = "0.110.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.metadata = { "bug_tracker_uri" => "https://github.com/excon/excon/issues", "changelog_uri" => "https://github.com/excon/excon/blob/master/changelog.txt", "documentation_uri" => "https://github.com/excon/excon/blob/master/README.md", "homepage_uri" => "https://github.com/excon/excon", "source_code_uri" => "https://github.com/excon/excon", "wiki_uri" => "https://github.com/excon/excon/wiki" } if s.respond_to? :metadata=
   s.require_paths = ["lib".freeze]
   s.authors = ["dpiddy (Dan Peterson)".freeze, "geemus (Wesley Beary)".freeze, "nextmat (Matt Sanders)".freeze]
-  s.date = "2024-01-03"
+  s.date = "2024-03-12"
   s.description = "EXtended http(s) CONnections".freeze
   s.email = "geemus@gmail.com".freeze
   s.extra_rdoc_files = ["README.md".freeze, "CONTRIBUTORS.md".freeze, "CONTRIBUTING.md".freeze]
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/excon/excon".freeze
   s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--charset=UTF-8".freeze]
+  s.required_ruby_version = Gem::Requirement.new(">= 2.7.0".freeze)
   s.rubygems_version = "3.3.26".freeze
   s.summary = "speed, persistence, http(s)".freeze
 
